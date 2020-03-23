@@ -36,7 +36,19 @@ public class SubForo {
     }
 
 
+    public static HashSet<SubForo> getForo() {
+        return foro;
+    }
 
+    public static void setForo(HashSet<SubForo> foro) {
+        SubForo.foro = foro;
+    }
 
+    public HashSet<Entrada> getEntradas() {
+        return entradas;
+    }
 
+    public void setEntradas(HashSet<Entrada> entradas) {
+        this.entradas = entradas;
+    }
 }

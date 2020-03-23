@@ -82,8 +82,11 @@ public class Usuario {
         return INSTANCIAUSUARIO;
     }
 
-    //Generacion de metodos
-    public void addUser(){
+    public ArrayList<Usuario> getUsers() {
+        return users;
+    }
 
+    public void setUsers(ArrayList<Usuario> users) {
+        this.users = users;
     }
 }
