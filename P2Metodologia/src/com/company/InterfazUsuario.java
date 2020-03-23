@@ -7,13 +7,15 @@ import java.util.Scanner;
 
 public class InterfazUsuario {
 
+    private ManagerSubForos manager;
     private Escaner escaner;
 
-    public InterfazUsuario(){
+    public InterfazUsuario(ManagerSubForos manager){
+        this.manager=manager;
         escaner=new Escaner();
     }
 
-    public void inicializarMenu(Usuario usuario,SubForo subForo,Entrada entrada){
+    public void inicializarMenu(Usuario usuario){
         try{
             int opcion=1;
             do{
@@ -24,13 +26,13 @@ public class InterfazUsuario {
                         mostrarSubforo();
                         break;
                     case 2:
-                        crearSubforos(usuario,subForo);
+                        crearSubforosInterfaz(usuario);
                         break;
                     case 3:
                         crearUsuario(usuario);
                         break;
                     case 4:
-                        crearEntrada(entrada);
+                        //crearEntrada(entrada);
                 }
             }while(opcion !=0);
         }catch (IOException ioe){
@@ -49,36 +51,41 @@ public class InterfazUsuario {
     }
 
     public void mostrarSubforo(){
-        ManagerSubForos manager=new ManagerSubForos();
+
         System.out.println("Mostrar SubForos");
         manager.mostrarSubForo();
     }
 
-    private void crearSubforos(Usuario usuario, SubForo subForo) throws IOException {
+    private void crearSubforosInterfaz(Usuario usuario) throws IOException {
         //Deberemos pedir el correo y contraseña de profesor
-        ManagerSubForos manager=new ManagerSubForos();
+       // ManagerSubForos manager=new ManagerSubForos();
        // String correo=null;
        // String password=null;
-        String tituloDelForo=null;
-       // correo=escaner.escanerString();
-       // password=escaner.escanerString();
-        tituloDelForo=escaner.escanerString();
+        // correo=escaner.escanerString();
+        // password=escaner.escanerString();
+        //if(correo.equals(usuario.getCorreo()) && password.equals(usuario.getContraseña())){
+        // if(usuario.getRol().equals("profesor")){
+        //if(manager.crearSubforos(new SubForo(tituloDelForo))){
+        // }
+        // }
+        // }else{
+        // System.out.println("No se ha podido añadir porque la contraseña o el correo no se corresponden con el de un profesor");
+        // }
 
+
+
+        String tituloDelForo=null;
+
+        tituloDelForo=escaner.escanerString();
+        SubForo subForo=new SubForo(tituloDelForo);
         if(tituloDelForo.equals("")){
             System.out.println("El nombre del foro no puede estar vacio");
+        }else{
+            manager.crearSubforos(subForo);
+            System.out.println("Sub Foro creado satisfactoriamente");
         }
 
-        //if(correo.equals(usuario.getCorreo()) && password.equals(usuario.getContraseña())){
-           // if(usuario.getRol().equals("profesor")){
-                //if(manager.crearSubforos(new SubForo(tituloDelForo))){
 
-                    manager.crearSubforos(subForo);
-                    System.out.println("Sub Foro creado satisfactoriamente");
-               // }
-           // }
-       // }else{
-           // System.out.println("No se ha podido añadir porque la contraseña o el correo no se corresponden con el de un profesor");
-       // }
 
     }
 

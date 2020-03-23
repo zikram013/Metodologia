@@ -8,8 +8,8 @@ public class Main {
         SubForo foro=new SubForo("Prueba");
         ManagerSubForos managerSubForos=new ManagerSubForos();
         managerSubForos.crearSubforos(foro);
-        InterfazUsuario iu=new InterfazUsuario();
-        iu.inicializarMenu(Usuario.getInstanciausuario(),SubForo.getInstanciaSubForo());
+        InterfazUsuario iu=new InterfazUsuario(managerSubForos);
+        iu.inicializarMenu(Usuario.getInstanciausuario());
 
     }
 }
