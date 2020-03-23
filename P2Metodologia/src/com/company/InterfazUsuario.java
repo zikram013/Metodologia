@@ -111,7 +111,7 @@ public class InterfazUsuario {
     }
 
         private void crearEntrada(Entrada entrada) {
-            
+
         }
 
 
