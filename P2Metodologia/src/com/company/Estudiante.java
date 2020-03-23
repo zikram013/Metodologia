@@ -4,25 +4,23 @@ import java.util.ArrayList;
 
 public class Estudiante extends Usuario {
 
-    private static String rol="Estudiante";
     private boolean penalizado;
-    private ArrayList<SubForo>suscripcion=new ArrayList<SubForo>();
+    private ArrayList<SubForo>suscripcion;
 
     //Constructor,getters and setters
-
-    public Estudiante(String nombre, String apellido, String nick, String correo, String contraseña, boolean penalizado, ArrayList<SubForo> suscripcion) {
-        super(nombre, apellido, nick, correo, contraseña);
+    //constructor con subscripcion foro
+    public Estudiante(String nombre, String apellido, String nick, String correo, String contraseña, String rol,boolean penalizado, ArrayList<SubForo> suscripcion) {
+        super(nombre, apellido, nick, correo, contraseña,rol);
         this.penalizado = penalizado;
         this.suscripcion = suscripcion;
     }
 
-    public static String getRol() {
-        return rol;
+    public Estudiante(String nombre, String apellido, String nick, String correo, String contraseña, String rol,boolean penalizado) {
+        super(nombre, apellido, nick, correo, contraseña,rol);
+        this.penalizado = penalizado;
+        this.suscripcion=new ArrayList<SubForo>();
     }
 
-    public static void setRol(String rol) {
-        rol = rol;
-    }
 
     public boolean isPenalizado() {
         return penalizado;
@@ -39,4 +37,7 @@ public class Estudiante extends Usuario {
     public void setSuscripcion(ArrayList<SubForo> suscripcion) {
         this.suscripcion = suscripcion;
     }
+
+    //Metodos
+
 }

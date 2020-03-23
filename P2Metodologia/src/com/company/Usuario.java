@@ -1,5 +1,7 @@
 package com.company;
 
+import java.util.ArrayList;
+
 public class Usuario {
 
     //Declaracion de variables
@@ -8,19 +10,32 @@ public class Usuario {
     private String nick;
     private String correo;
     private String contraseña;
+    private String rol;
+    private ArrayList<Usuario>users;
+    private static final Usuario INSTANCIAUSUARIO=new Usuario();
 
     //Constructor,getters and setters
 
-    public Usuario(String nombre, String apellido, String nick, String correo, String contraseña) {
+    public Usuario(String nombre, String apellido, String nick, String correo, String contraseña,String rol) {
         this.nombre = nombre;
         this.apellido = apellido;
         this.nick = nick;
         this.correo = correo;
         this.contraseña = contraseña;
+        this.rol=rol;
+        this.users=new ArrayList<>();
     }
 
     public Usuario() {
 
+    }
+
+    public String getRol() {
+        return rol;
+    }
+
+    public void setRol(String rol) {
+        this.rol = rol;
     }
 
     public String getNombre() {
@@ -63,5 +78,12 @@ public class Usuario {
         this.contraseña = contraseña;
     }
 
+    public static Usuario getInstanciausuario(){
+        return INSTANCIAUSUARIO;
+    }
+
     //Generacion de metodos
+    public void addUser(){
+
+    }
 }

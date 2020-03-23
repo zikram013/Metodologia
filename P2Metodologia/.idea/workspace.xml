@@ -2,19 +2,17 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="dace93dc-76f2-4e93-a24a-8c2426e2efd8" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/company/Administrador.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/company/Ejercicios.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/company/Encuesta.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/company/Entrada.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/company/Estudiante.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/company/Profesor.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/company/SubForo.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/company/Texto.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/company/Usuario.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/company/Verificar.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/company/Escaner.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/company/InterfazUsuario.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/company/ManagerSubForos.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/company/Administrador.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/company/Administrador.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/company/Estudiante.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/company/Estudiante.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/company/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/company/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/company/Profesor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/company/Profesor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/company/SubForo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/company/SubForo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/company/Usuario.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/company/Usuario.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -47,8 +45,11 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
+    <property name="last_opened_file_path" value="D:/DescargasGoogleChrome/GestorDeBanca" />
+    <property name="project.structure.last.edited" value="Project" />
+    <property name="project.structure.proportion" value="0.0" />
+    <property name="project.structure.side.proportion" value="0.0" />
+    <property name="settings.editor.selected.configurable" value="project.propVCSSupport.Mappings" />
   </component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
@@ -81,9 +82,10 @@
     <servers />
   </component>
   <component name="WindowStateProjectService">
-    <state x="765" y="236" key="#com.intellij.ide.util.MemberChooser" timestamp="1584876027296">
+    <state x="765" y="236" key="#com.intellij.ide.util.MemberChooser" timestamp="1584965347948">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
+    <state x="765" y="236" key="#com.intellij.ide.util.MemberChooser/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1584965347948" />
     <state x="765" y="236" key="#com.intellij.ide.util.MemberChooser/0.0.1920.1040@0.0.1920.1040" timestamp="1584876027296" />
     <state x="808" y="409" key="#com.intellij.ide.util.projectWizard.JdkChooserPanel.MyDialog" timestamp="1584873152471">
       <screen x="0" y="0" width="1920" height="1040" />
@@ -93,14 +95,28 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="779" y="211" key="#com.intellij.openapi.keymap.impl.ui.EditKeymapsDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1584874931150" />
-    <state x="461" y="162" key="SettingsEditor" timestamp="1584873464443">
+    <state x="690" y="267" key="#com.intellij.refactoring.typeMigration.ui.FailedConversionsDialog" timestamp="1584961820088">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
+    <state x="690" y="267" key="#com.intellij.refactoring.typeMigration.ui.FailedConversionsDialog/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1584961820088" />
+    <state x="740" y="275" key="FileChooserDialogImpl" timestamp="1584957018368">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="740" y="275" key="FileChooserDialogImpl/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1584957018368" />
+    <state x="461" y="162" key="SettingsEditor" timestamp="1584958855671">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="461" y="162" key="SettingsEditor/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1584958855671" />
     <state x="461" y="162" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1584873464443" />
-    <state x="656" y="344" key="com.intellij.ide.util.TipDialog" timestamp="1584873098067">
+    <state x="656" y="344" key="com.intellij.ide.util.TipDialog" timestamp="1584957002463">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
+    <state x="656" y="344" key="com.intellij.ide.util.TipDialog/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1584957002463" />
     <state x="656" y="344" key="com.intellij.ide.util.TipDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1584873098067" />
+    <state x="702" y="148" key="refactoring.ChangeSignatureDialog" timestamp="1584960108432">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="702" y="148" key="refactoring.ChangeSignatureDialog/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1584960108432" />
     <state x="616" y="240" key="run.anything.popup" timestamp="1584873896165">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
