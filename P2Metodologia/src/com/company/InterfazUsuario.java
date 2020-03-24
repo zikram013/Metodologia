@@ -66,8 +66,8 @@ public class InterfazUsuario {
         System.out.println("2-crear subForo");//hecho
         System.out.println("3-Crear Usuario");//hecho
         System.out.println("4-Mostrar usuario");//hecho
-        System.out.println("5-Crear Entrada");//pendiente de realizar
-        System.out.println("6-Mostrar entradas del subforo");
+        System.out.println("5-Crear Entrada");//Arreglar porque no la guarda
+        System.out.println("6-Mostrar entradas del subforo");//Arreglar porque no las muestra
     }
 
     public void mostrarSubforo(){
@@ -146,47 +146,50 @@ public class InterfazUsuario {
 
         if(manager.encontrarSubforos(foro)){
             System.out.println("Escriba T para texto plano(alumno y profesor), E para Ejercicios(profesor) o S para encuestas(profesor)");
-            String opcion;
-            do{
-                mostrarMenu();
-                opcion=escaner.escanerString();
-                switch (opcion){
-                    case "T":
-                        //crear tareas
-                        System.out.println("Dime el correo");
-                        correo=escaner.escanerString();
-                        System.out.println("Dime la contraseña");
-                        password=escaner.escanerString();
-                        managerUsuario.usuarioRegistrado(correo,password);
-                        System.out.println("Di el titulo de la entrada");
-                        tituloEntrada=escaner.escanerString();
-                        System.out.println("Escriba el texto");
-                        textoEntrada=escaner.escanerString();
-                        if(forosito.crearEntrada(new Texto(tituloEntrada,textoEntrada))){
-                            System.out.println("Creada entrada correctamente");
-                        }else{
-                            System.out.println("Entrada no creada");
-                        }
+            String letra;
+            try{
+                do{
+                    letra=escaner.escanerString();
+                    switch (letra){
+                        case "T":
+                            //crear tareas
+                            System.out.println("Dime el correo");
+                            correo=escaner.escanerString();
+                            System.out.println("Dime la contraseña");
+                            password=escaner.escanerString();
+                            managerUsuario.usuarioRegistrado(correo,password);
+                            System.out.println("Di el titulo de la entrada");
+                            tituloEntrada=escaner.escanerString();
+                            System.out.println("Escriba el texto");
+                            textoEntrada=escaner.escanerString();
+                            if(forosito.crearEntrada(foro,new Texto(tituloEntrada,textoEntrada))){
+                                System.out.println("Creada entrada correctamente");
+                            }else{
+                                System.out.println("Entrada no creada");
+                            }
 
-                        break;
-                    case "E":
-                       //crear ejercicios
-                        System.out.println("Dime el correo");
-                        correo=escaner.escanerString();
-                        System.out.println("Dime la contraseña");
-                        password=escaner.escanerString();
-                        managerUsuario.encontradoRolProfesor(correo,password);
-                        break;
-                    case "S" :
-                        //crear encuestas
-                        System.out.println("Dime el correo");
-                        correo=escaner.escanerString();
-                        System.out.println("Dime la contraseña");
-                        password=escaner.escanerString();
-                        managerUsuario.encontradoRolProfesor(correo,password);
-                        break;
-                }
-            }while(opcion.equals("F"));
+                            break;
+                        case "E":
+                            //crear ejercicios
+                            System.out.println("Dime el correo");
+                            correo=escaner.escanerString();
+                            System.out.println("Dime la contraseña");
+                            password=escaner.escanerString();
+                            managerUsuario.encontradoRolProfesor(correo,password);
+                            break;
+                        case "S" :
+                            //crear encuestas
+                            System.out.println("Dime el correo");
+                            correo=escaner.escanerString();
+                            System.out.println("Dime la contraseña");
+                            password=escaner.escanerString();
+                            managerUsuario.encontradoRolProfesor(correo,password);
+                            break;
+                    }
+                }while(letra.equals("F"));
+            }catch (IOException e){
+                e.printStackTrace();
+            }
         }else{
             System.out.println("SubForo no encontrado");
         }
@@ -198,7 +201,7 @@ public class InterfazUsuario {
         String tituloForo=escaner.escanerString();
         if(manager.encontrarSubforos(tituloForo)){
             System.out.println("Mostrar entrada");
-            forosito.listarEntrada();
+            forosito.listarEntrada(tituloForo);
         }
     }
 

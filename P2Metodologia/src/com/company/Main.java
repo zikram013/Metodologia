@@ -13,7 +13,7 @@ public class Main {
         managerSubForos.crearSubforos(foro);
         managerUsuario.crearUsuario(usuario);
         managerSubForos.crearSubforos(foro2);
-        foro2.crearEntrada(texto);
+        foro2.crearEntrada("Prueba",texto);
         InterfazUsuario iu=new InterfazUsuario(managerSubForos,managerUsuario);
         iu.inicializarMenu(Usuario.getInstanciausuario());
 

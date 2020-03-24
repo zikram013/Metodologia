@@ -1,5 +1,6 @@
 package com.company;
 
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.Iterator;
 
@@ -7,16 +8,17 @@ public class SubForo {
 
     private String tituloSubForo;
     private static HashSet<SubForo>foro;
-    private HashSet<Texto> entradasTexto;
+    private HashSet<Entrada> entradas;
     private static final SubForo INSTANCIASUBFORO=new SubForo();
+
 
     //constructor getters and setters
 
 
     public SubForo(String tituloSubForo) {
         this.tituloSubForo = tituloSubForo;
-        this.entradasTexto = new HashSet<Texto>();
-        this.foro=new HashSet<SubForo>();
+        this.entradas = new HashSet<Entrada>();
+        foro=new HashSet<SubForo>();
     }
 
     public SubForo() {
@@ -45,29 +47,32 @@ public class SubForo {
         SubForo.foro = foro;
     }
 
-    public HashSet<Texto> getEntradasTexto() {
-        return entradasTexto;
+    public HashSet<Entrada> getEntradas() {
+        return entradas;
     }
 
-    public void setEntradasTexto(HashSet<Texto> entradasTexto) {
-        this.entradasTexto = entradasTexto;
+    public void setEntradas(HashSet<Entrada> entradas) {
+        this.entradas = entradas;
     }
 
-    public boolean crearEntrada(Texto texto){
-        if(this.getEntradasTexto().contains(texto.getTituloEntrada())) {
-            return false;
-        }else{
-            System.out.println("crea entrada");
-            entradasTexto.add(texto);
-            return true;
-        }
+    public boolean crearEntrada(String nombreForo ,Texto texto) {
+        for (SubForo subForo : foro) {
+            if (subForo.getTituloSubForo().equals(nombreForo)) {
+                    System.out.println("crea entrada");
+                    entradas.add(texto);
+                    return true;
+                }
+            }
+        return false;
     }
-
-    public void listarEntrada() {
-        Iterator<Texto> listaTexto= this.entradasTexto.iterator();
-        while(listaTexto.hasNext()){
-            System.out.println("\n"+listaTexto.next().toString());
-
+    
+    public void listarEntrada(String subForos) {
+        for(SubForo subForo: foro){
+            if(subForo.getTituloSubForo().equals(subForos)){
+                for (Entrada entrada : this.entradas) {
+                    System.out.println("\n" + entrada.toString());
+                }
+            }
         }
     }
 }
