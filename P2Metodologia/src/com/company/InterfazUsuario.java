@@ -3,16 +3,25 @@ package com.company;
 import java.awt.*;
 import java.io.IOException;
 import java.net.StandardSocketOptions;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class InterfazUsuario {
 
     private ManagerSubForos manager;
+    private ManagerUsuario managerUsuario;
+    private ArrayList<Usuario>usuario;
     private Escaner escaner;
 
-    public InterfazUsuario(ManagerSubForos manager){
+    public InterfazUsuario(ManagerSubForos manager,ManagerUsuario managerUsuario){
         this.manager=manager;
+        this.managerUsuario=managerUsuario;
         escaner=new Escaner();
+        this.usuario=new ArrayList<>();
+    }
+
+    public ArrayList<Usuario> getUsuario() {
+        return usuario;
     }
 
     public void inicializarMenu(Usuario usuario){
@@ -26,13 +35,17 @@ public class InterfazUsuario {
                         mostrarSubforo();
                         break;
                     case 2:
-                        crearSubforosInterfaz(usuario);
+                        crearSubforosInterfaz();
                         break;
                     case 3:
-                        crearUsuario(usuario);
+                        crearUsuario();
                         break;
                     case 4:
+                            mostrarUsuario();
+                            break;
+                    case 5:
                         //crearEntrada(entrada);
+                        break;
                 }
             }while(opcion !=0);
         }catch (IOException ioe){
@@ -42,12 +55,14 @@ public class InterfazUsuario {
 
 
 
+
     public void mostrarMenu(){
         System.out.println("0-Salir");
         System.out.println("1-mostrarSubforos");
         System.out.println("2-crear subForo");
         System.out.println("3-Crear Usuario");
-        System.out.println("4-Crear Entrada");
+        System.out.println("4-Mostrar usuario");
+        System.out.println("5-Crear Entrada");
     }
 
     public void mostrarSubforo(){
@@ -56,41 +71,35 @@ public class InterfazUsuario {
         manager.mostrarSubForo();
     }
 
-    private void crearSubforosInterfaz(Usuario usuario) throws IOException {
-        //Deberemos pedir el correo y contraseña de profesor
-       // ManagerSubForos manager=new ManagerSubForos();
-       // String correo=null;
-       // String password=null;
-        // correo=escaner.escanerString();
-        // password=escaner.escanerString();
-        //if(correo.equals(usuario.getCorreo()) && password.equals(usuario.getContraseña())){
-        // if(usuario.getRol().equals("profesor")){
-        //if(manager.crearSubforos(new SubForo(tituloDelForo))){
-        // }
-        // }
-        // }else{
-        // System.out.println("No se ha podido añadir porque la contraseña o el correo no se corresponden con el de un profesor");
-        // }
+    private void crearSubforosInterfaz() throws IOException {
 
-
-
+        String correo=null;
+        String password=null;
         String tituloDelForo=null;
+        System.out.println("Introduzca el correo");
+        correo=escaner.escanerString();
+        System.out.println("Introduzca la contraseña");
+        password=escaner.escanerString();
 
-        tituloDelForo=escaner.escanerString();
-        SubForo subForo=new SubForo(tituloDelForo);
-        if(tituloDelForo.equals("")){
-            System.out.println("El nombre del foro no puede estar vacio");
-        }else{
-            manager.crearSubforos(subForo);
-            System.out.println("Sub Foro creado satisfactoriamente");
-        }
-
-
+   ;
+          if(managerUsuario.encontrado(correo,password)){
+              System.out.println("Introduzca el nombre del foro");
+              tituloDelForo=escaner.escanerString();
+              SubForo subForo=new SubForo(tituloDelForo);
+              if(tituloDelForo.equals("")){
+                  System.out.println("El nombre del foro no puede estar vacio");
+              }else{
+                  manager.crearSubforos(subForo);
+                  System.out.println("Sub Foro creado satisfactoriamente");
+              }
+          }else {
+              System.out.println("no se puede crear");
+          }
 
     }
 
-    private void crearUsuario(Usuario usuario) throws IOException {
-        ManagerUsuario managerUsuario = new ManagerUsuario();
+
+    private void crearUsuario() throws IOException {
         //Pedimos todos los datos al usuario
         System.out.println("Introduzca el nombre");
         String nombre = escaner.escanerString();
@@ -117,6 +126,10 @@ public class InterfazUsuario {
         }
     }
 
+    private void mostrarUsuario() {
+        System.out.println("Mostrar Usuarios");
+        managerUsuario.listarUsuarios();
+    }
         private void crearEntrada(Entrada entrada) {
 
         }

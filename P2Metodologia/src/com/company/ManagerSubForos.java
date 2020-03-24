@@ -1,16 +1,20 @@
 package com.company;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Iterator;
 
 public class ManagerSubForos {
 
     private SubForo subForo=new SubForo();
+    private Usuario usuario=new Usuario();
     private HashSet<String> foro;
     private HashSet<SubForo>listadoDeForos;
+    private static ArrayList<Usuario>usuarios;
 
     public ManagerSubForos(){
         this.listadoDeForos=new HashSet<SubForo>();
+        this.usuarios=new ArrayList<Usuario>();
     }
 
     public HashSet<SubForo> getListadoDeForos() {
@@ -19,6 +23,14 @@ public class ManagerSubForos {
 
     public void setListadoDeForos(HashSet<SubForo> listadoDeForos) {
         this.listadoDeForos = listadoDeForos;
+    }
+
+    public ArrayList<Usuario> getUsuarios() {
+        return usuarios;
+    }
+
+    public void setUsuarios(ArrayList<Usuario> usuarios) {
+        this.usuarios = usuarios;
     }
 
     public  void mostrarSubForo() {
@@ -30,7 +42,7 @@ public class ManagerSubForos {
     }
 
     public boolean crearSubforos(SubForo subforo){
-        if(this.getListadoDeForos().contains(subforo.getTituloSubForo())){
+        if(this.getListadoDeForos().contains(subforo.getTituloSubForo())) {
             return false;
         }else{
             System.out.println("entro");
@@ -38,4 +50,6 @@ public class ManagerSubForos {
             return true;
         }
     }
+
+
 }

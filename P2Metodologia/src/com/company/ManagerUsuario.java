@@ -1,27 +1,55 @@
 package com.company;
 
 import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Iterator;
 
 public class ManagerUsuario {
 
-    private HashMap<String,Usuario>listaDeUsuarios=new HashMap<String, Usuario>();
+    private HashSet<Usuario> listaDeUsuarios;
 
-    public HashMap<String, Usuario> getListaDeUsuarios() {
+    public ManagerUsuario(){
+        this.listaDeUsuarios=new HashSet<Usuario>();
+    }
+
+    public HashSet<Usuario> getListaDeUsuarios() {
         return listaDeUsuarios;
     }
 
-    public void setListaDeUsuarios(HashMap<String, Usuario> listaDeUsuarios) {
+
+    public void setListaDeUsuarios(HashSet<Usuario> listaDeUsuarios) {
         this.listaDeUsuarios = listaDeUsuarios;
     }
 
+
+
     public boolean crearUsuario(Usuario usuario){
-        if(this.getListaDeUsuarios().containsKey(usuario.getNick()) || (this.getListaDeUsuarios().containsKey(usuario.getCorreo()))){
+        if(this.getListaDeUsuarios().contains(usuario.getCorreo()) || this.getListaDeUsuarios().contains(usuario.getNick())) {
             return false;
         }else{
-            this.getListaDeUsuarios().put(usuario.getNick(),usuario);
+            System.out.println("entro");
+            listaDeUsuarios.add(usuario);
             return true;
         }
     }
 
 
+    public void listarUsuarios() {
+        Iterator<Usuario> usuarioIterator= this.listaDeUsuarios.iterator();
+        while(usuarioIterator.hasNext()){
+            System.out.println("\n"+usuarioIterator.next().toString());
+        }
+    }
+
+    public  boolean encontrado(String correo,String password){
+        System.out.println("realizo la busqueda");
+        boolean esProfesor=false;
+        for(Usuario usuario: listaDeUsuarios) {
+            if (usuario.getCorreo().equals(correo) && usuario.getContraseña().equals(password)) {
+                System.out.println("El nombre del usuario es"+usuario.getNombre()+"El rol del usuario es"+usuario.getRol());
+                return true;
+            }
+        }
+        return false;
+    }
 }

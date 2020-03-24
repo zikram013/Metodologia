@@ -89,4 +89,16 @@ public class Usuario {
     public void setUsers(ArrayList<Usuario> users) {
         this.users = users;
     }
+
+    @Override
+    public String toString() {
+        return "Usuario{" +
+                "nombre='" + nombre + '\'' +
+                ", apellido='" + apellido + '\'' +
+                ", nick='" + nick + '\'' +
+                ", correo='" + correo + '\'' +
+                ", contraseña='" + contraseña + '\'' +
+                ", rol='" + rol + '\'' +
+                '}';
+    }
 }

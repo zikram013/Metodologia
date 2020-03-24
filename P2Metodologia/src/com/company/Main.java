@@ -7,8 +7,10 @@ public class Main {
         Usuario usuario=new Usuario("marcos","sanchez","zikram","hola","pass","profesor");
         SubForo foro=new SubForo("Prueba");
         ManagerSubForos managerSubForos=new ManagerSubForos();
+        ManagerUsuario managerUsuario=new ManagerUsuario();
         managerSubForos.crearSubforos(foro);
-        InterfazUsuario iu=new InterfazUsuario(managerSubForos);
+        managerUsuario.crearUsuario(usuario);
+        InterfazUsuario iu=new InterfazUsuario(managerSubForos,managerUsuario);
         iu.inicializarMenu(Usuario.getInstanciausuario());
 
     }
