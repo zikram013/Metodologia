@@ -6,8 +6,8 @@ public class Texto extends Entrada {
 
     private String cuerpoTexto;
 
-    public Texto(String tituloEntrada, ArrayList<String> comentario, int valoracionPositiva, int valoracionNegativa, String cuerpoTexto) {
-        super(tituloEntrada, comentario, valoracionPositiva, valoracionNegativa);
+    public Texto(String tituloEntrada, String cuerpoTexto) {
+        super(tituloEntrada);
         this.cuerpoTexto = cuerpoTexto;
     }
 
@@ -17,5 +17,12 @@ public class Texto extends Entrada {
 
     public void setCuerpoTexto(String cuerpoTexto) {
         this.cuerpoTexto = cuerpoTexto;
+    }
+
+    @Override
+    public String toString() {
+        return "Texto{" +
+                "cuerpoTexto='" + cuerpoTexto + '\'' +
+                '}';
     }
 }

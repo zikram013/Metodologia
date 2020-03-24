@@ -5,15 +5,15 @@ import java.util.ArrayList;
 public class Entrada {
 
     private String tituloEntrada;
-    private ArrayList<String>comentario=new ArrayList<String>();
+    private ArrayList<String>comentario;
     private int valoracionPositiva;
     private int valoracionNegativa;
 
-    public Entrada(String tituloEntrada, ArrayList<String> comentario, int valoracionPositiva, int valoracionNegativa) {
+    public Entrada(String tituloEntrada) {
         this.tituloEntrada = tituloEntrada;
-        this.comentario = comentario;
-        this.valoracionPositiva = valoracionPositiva;
-        this.valoracionNegativa = valoracionNegativa;
+        this.comentario = new ArrayList<>();
+        this.valoracionPositiva = 0;
+        this.valoracionNegativa = 0;
     }
 
     public Entrada() {
@@ -50,5 +50,15 @@ public class Entrada {
 
     public void setValoracionNegativa(int valoracionNegativa) {
         this.valoracionNegativa = valoracionNegativa;
+    }
+
+    @Override
+    public String toString() {
+        return "Entrada{" +
+                "tituloEntrada='" + tituloEntrada + '\'' +
+                ", comentario=" + comentario +
+                ", valoracionPositiva=" + valoracionPositiva +
+                ", valoracionNegativa=" + valoracionNegativa +
+                '}';
     }
 }

@@ -41,12 +41,33 @@ public class ManagerUsuario {
         }
     }
 
-    public  boolean encontrado(String correo,String password){
+    public  boolean encontradoRolProfesor(String correo,String password){
         System.out.println("realizo la busqueda");
-        boolean esProfesor=false;
         for(Usuario usuario: listaDeUsuarios) {
             if (usuario.getCorreo().equals(correo) && usuario.getContraseña().equals(password)) {
                 System.out.println("El nombre del usuario es"+usuario.getNombre()+"El rol del usuario es"+usuario.getRol());
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public boolean encontradoRolAlumno(String correo,String password){
+        System.out.println("Realizando busqueda");
+        for(Usuario usuario:listaDeUsuarios){
+            if(usuario.getCorreo().equals(correo) && usuario.getContraseña().equals(password)){
+                System.out.println("El nombre del usuario es"+usuario.getNombre()+"El rol del usuario es"+usuario.getRol());
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public boolean usuarioRegistrado(String correo,String password){
+        System.out.println("Comprobando que existe en el sistema");
+        for(Usuario usuario :listaDeUsuarios){
+            if(usuario.getCorreo().equals(correo) && usuario.getContraseña().equals(password)){
+                System.out.println("El usuario exixte");
                 return true;
             }
         }

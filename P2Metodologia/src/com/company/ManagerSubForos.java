@@ -10,11 +10,21 @@ public class ManagerSubForos {
     private Usuario usuario=new Usuario();
     private HashSet<String> foro;
     private HashSet<SubForo>listadoDeForos;
+    private HashSet<Entrada> entradas;
     private static ArrayList<Usuario>usuarios;
 
     public ManagerSubForos(){
         this.listadoDeForos=new HashSet<SubForo>();
         this.usuarios=new ArrayList<Usuario>();
+        this.entradas=new HashSet<Entrada>();
+    }
+
+    public HashSet<Entrada> getEntradas() {
+        return entradas;
+    }
+
+    public void setEntradas(HashSet<Entrada> entradas) {
+        this.entradas = entradas;
     }
 
     public HashSet<SubForo> getListadoDeForos() {
@@ -50,6 +60,18 @@ public class ManagerSubForos {
             return true;
         }
     }
+
+    public boolean encontrarSubforos(String nombreDelSubForo){
+        System.out.println("Buscando el subforo");
+        for (SubForo subForo:listadoDeForos){
+            if(subForo.getTituloSubForo().equals(nombreDelSubForo)){
+                System.out.println("Subforo encontrado");
+                return true;
+            }
+        }
+        return false;
+    }
+
 
 
 }

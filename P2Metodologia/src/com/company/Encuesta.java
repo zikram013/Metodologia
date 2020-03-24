@@ -5,12 +5,12 @@ import java.util.ArrayList;
 public class Encuesta extends Entrada {
 
     private String textoEncuesta;
-    private ArrayList<String>respuestasEncuesta=new ArrayList<String>();
+    private ArrayList<String>respuestasEncuesta;
 
-    public Encuesta(String tituloEntrada, ArrayList<String> comentario, int valoracionPositiva, int valoracionNegativa, String textoEncuesta, ArrayList<String> respuestasEncuesta) {
-        super(tituloEntrada, comentario, valoracionPositiva, valoracionNegativa);
+    public Encuesta(String tituloEntrada, String textoEncuesta) {
+        super(tituloEntrada);
         this.textoEncuesta = textoEncuesta;
-        this.respuestasEncuesta = respuestasEncuesta;
+        this.respuestasEncuesta =new ArrayList<String>();
     }
 
     public String getTextoEncuesta() {
