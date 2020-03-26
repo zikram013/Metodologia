@@ -4,18 +4,18 @@ import java.util.ArrayList;
 
 public class Ejercicios extends Entrada {
 
-    private ArrayList<String>tareas;
+    private String tareas;
 
-    public Ejercicios(String tituloEntrada, ArrayList<String> comentario) {
-        super(tituloEntrada);
-        this.tareas=new ArrayList<String>();
+    public Ejercicios(String tituloEntrada, String textoEntrada, String tareas) {
+        super(tituloEntrada, textoEntrada);
+        this.tareas = tareas;
     }
 
-    public ArrayList<String> getTareas() {
+    public String getTareas() {
         return tareas;
     }
 
-    public void setTareas(ArrayList<String> tareas) {
+    public void setTareas(String tareas) {
         this.tareas = tareas;
     }
 }

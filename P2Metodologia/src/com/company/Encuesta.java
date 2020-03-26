@@ -3,7 +3,7 @@ package com.company;
 import java.util.ArrayList;
 
 public class Encuesta extends Entrada {
-
+/*
     private String textoEncuesta;
     private ArrayList<String>respuestasEncuesta;
 
@@ -27,5 +27,5 @@ public class Encuesta extends Entrada {
 
     public void setRespuestasEncuesta(ArrayList<String> respuestasEncuesta) {
         this.respuestasEncuesta = respuestasEncuesta;
-    }
+    }*/
 }

@@ -1,16 +1,17 @@
 package com.company;
 
-import java.util.ArrayList;
 import java.util.HashSet;
 
 public class Texto extends Entrada {
 
+/*
     private HashSet<Texto>textos;
     private HashSet<SubForo>subforo;
     private String cuerpoTexto;
 
     public Texto(String tituloEntrada, String cuerpoTexto) {
         super(tituloEntrada);
+
         this.cuerpoTexto = cuerpoTexto;
         this.textos=new HashSet<Texto>();
     }
@@ -44,5 +45,7 @@ public class Texto extends Entrada {
         return "Texto{" +
                 "cuerpoTexto='" + cuerpoTexto + '\'' +
                 '}';
-    }
+    }*/
+
+
 }

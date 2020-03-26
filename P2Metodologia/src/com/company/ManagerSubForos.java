@@ -45,9 +45,8 @@ public class ManagerSubForos {
 
     public  void mostrarSubForo() {
         //Crear la mostrar
-        Iterator<SubForo> listaSubForos= this.listadoDeForos.iterator();
-        while(listaSubForos.hasNext()){
-            System.out.println("\n"+listaSubForos.next().getTituloSubForo());
+        for (SubForo listadoDeForo : this.listadoDeForos) {
+            System.out.println("\n" + listadoDeForo.getTituloSubForo());
         }
     }
 

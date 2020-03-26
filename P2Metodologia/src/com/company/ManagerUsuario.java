@@ -51,7 +51,7 @@ public class ManagerUsuario {
         }
         return false;
     }
-
+/*
     public boolean encontradoRolAlumno(String correo,String password){
         System.out.println("Realizando busqueda");
         for(Usuario usuario:listaDeUsuarios){
@@ -61,7 +61,7 @@ public class ManagerUsuario {
             }
         }
         return false;
-    }
+    }*/
 
     public boolean usuarioRegistrado(String correo,String password){
         System.out.println("Comprobando que existe en el sistema");

@@ -1,10 +1,7 @@
 package com.company;
 
-import java.awt.*;
 import java.io.IOException;
-import java.net.StandardSocketOptions;
 import java.util.ArrayList;
-import java.util.Scanner;
 
 public class InterfazUsuario {
 
@@ -13,6 +10,7 @@ public class InterfazUsuario {
     private ArrayList<Usuario>usuario;
     private SubForo forosito;
     private Escaner escaner;
+    private Entrada entrada;
 
     public InterfazUsuario(ManagerSubForos manager,ManagerUsuario managerUsuario){
         this.manager=manager;
@@ -20,6 +18,7 @@ public class InterfazUsuario {
         escaner=new Escaner();
         this.usuario=new ArrayList<>();
         this.forosito=new SubForo();
+        this.entrada=new Entrada();
     }
 
     public ArrayList<Usuario> getUsuario() {
@@ -66,8 +65,8 @@ public class InterfazUsuario {
         System.out.println("2-crear subForo");//hecho
         System.out.println("3-Crear Usuario");//hecho
         System.out.println("4-Mostrar usuario");//hecho
-        System.out.println("5-Crear Entrada");//Arreglar porque no la guarda
-        System.out.println("6-Mostrar entradas del subforo");//Arreglar porque no las muestra
+        System.out.println("5-Crear Entrada");//Parece que lo guarda
+        System.out.println("6-Mostrar entradas del subforo");//Comprobar si lo guarda bien mostrando su correspondiente
     }
 
     public void mostrarSubforo(){
@@ -157,17 +156,20 @@ public class InterfazUsuario {
                             correo=escaner.escanerString();
                             System.out.println("Dime la contraseña");
                             password=escaner.escanerString();
-                            managerUsuario.usuarioRegistrado(correo,password);
-                            System.out.println("Di el titulo de la entrada");
-                            tituloEntrada=escaner.escanerString();
-                            System.out.println("Escriba el texto");
-                            textoEntrada=escaner.escanerString();
-                            if(forosito.crearEntrada(foro,new Texto(tituloEntrada,textoEntrada))){
-                                System.out.println("Creada entrada correctamente");
+                            if(managerUsuario.usuarioRegistrado(correo,password)){
+                                System.out.println("Di el titulo de la entrada");
+                                tituloEntrada=escaner.escanerString();
+                                System.out.println("Escriba el texto");
+                                textoEntrada=escaner.escanerString();
+                                if(forosito.crearEntrada(new SubForo(foro),new Entrada(tituloEntrada, textoEntrada))){
+                                    System.out.println("Creada entrada correctamente");
+                                }else {
+                                    System.out.println("Entrada no creada");
+                                }
+                            System.out.println(forosito.crearEntrada(new SubForo(foro),new Entrada(tituloEntrada, textoEntrada)));
                             }else{
-                                System.out.println("Entrada no creada");
+                                System.out.println("Este usuario no existe");
                             }
-
                             break;
                         case "E":
                             //crear ejercicios
