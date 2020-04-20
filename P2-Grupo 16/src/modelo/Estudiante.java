@@ -17,8 +17,9 @@ public class Estudiante extends Usuario {
     public Estudiante() {
     }
 
-    public Estudiante(String nombre, String apllidos, String nick, String email, String contraseña) {
+    public Estudiante(String nombre, String apllidos, String nick, String email, String contraseña, String rol) {
         super(nombre, apllidos, nick, email, contraseña);
+        this.rol = rol;
     }
 
     public String getRol() {
@@ -37,4 +38,15 @@ public class Estudiante extends Usuario {
         this.penalizacion = penalizacion;
     }
 
+    @Override
+    public String toString() {
+        return "Estudiante{" +
+                "rol='" + rol + '\'' +
+                ", nombre='" + nombre + '\'' +
+                ", apllidos='" + apllidos + '\'' +
+                ", nick='" + nick + '\'' +
+                ", email='" + email + '\'' +
+                ", contraseña='" + contraseña + '\'' +
+                '}';
+    }
 }

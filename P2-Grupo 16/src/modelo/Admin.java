@@ -22,5 +22,15 @@ public class Admin extends Usuario {
         this.rol = rol;
     }
 
-
+    @Override
+    public String toString() {
+        return "Admin{" +
+                "rol='" + rol + '\'' +
+                ", nombre='" + nombre + '\'' +
+                ", apllidos='" + apllidos + '\'' +
+                ", nick='" + nick + '\'' +
+                ", email='" + email + '\'' +
+                ", contraseña='" + contraseña + '\'' +
+                '}';
+    }
 }

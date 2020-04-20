@@ -19,6 +19,11 @@ public class Profesor extends Usuario {
         this.penalizacion = penalizacion;
     }
 
+    public Profesor(String nombre, String apllidos, String nick, String email, String contraseña, String rol) {
+        super(nombre, apllidos, nick, email, contraseña);
+        this.rol = rol;
+    }
+
     public String getRol() {
         return rol;
     }
@@ -35,4 +40,15 @@ public class Profesor extends Usuario {
         this.penalizacion = penalizacion;
     }
 
+    @Override
+    public String toString() {
+        return "Profesor{" +
+                "rol='" + rol + '\'' +
+                ", nombre='" + nombre + '\'' +
+                ", apllidos='" + apllidos + '\'' +
+                ", nick='" + nick + '\'' +
+                ", email='" + email + '\'' +
+                ", contraseña='" + contraseña + '\'' +
+                '}';
+    }
 }
