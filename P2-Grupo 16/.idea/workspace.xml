@@ -1,11 +1,40 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="6c49aa25-8163-41b5-8bde-004e04e479e2" name="Default Changelist" comment="" />
+    <list default="true" id="6c49aa25-8163-41b5-8bde-004e04e479e2" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/../.idea/Metodologia.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Practica 2-MP/META-INF/Practica 2-MP.kotlin_module" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Practica 2-MP/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Practica 2-MP/Main.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Practica 2-MP/controlador/Controlador.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Practica 2-MP/controlador/Controlador.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Practica 2-MP/modelo/Admin.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Practica 2-MP/modelo/Admin.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Practica 2-MP/modelo/Estudiante.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Practica 2-MP/modelo/Estudiante.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Practica 2-MP/modelo/Profesor.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Practica 2-MP/modelo/Profesor.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controlador/Controlador.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controlador/Controlador.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/modelo/Admin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/modelo/Admin.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/modelo/Estudiante.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/modelo/Estudiante.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/modelo/Profesor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/modelo/Profesor.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="DatabaseView">
+    <option name="SHOW_INTERMEDIATE" value="true" />
+    <option name="GROUP_DATA_SOURCES" value="true" />
+    <option name="GROUP_SCHEMA" value="true" />
+    <option name="GROUP_CONTENTS" value="false" />
+    <option name="SORT_POSITIONED" value="false" />
+    <option name="SHOW_EMPTY_GROUPS" value="false" />
+    <option name="AUTO_SCROLL_FROM_SOURCE" value="false" />
+    <option name="HIDDEN_KINDS">
+      <set />
+    </option>
+    <expand />
+    <select />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -14,7 +43,11 @@
       </list>
     </option>
   </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
   <component name="ProjectId" id="1a7jhxZjy9vyHEQ04f3grBiK4TW" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showExcludedFiles" value="true" />
@@ -22,8 +55,10 @@
   </component>
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../webapp12/daw.webapp12" />
   </component>
   <component name="RunManager">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
@@ -50,6 +85,11 @@
       <option name="presentableId" value="Default" />
       <updated>1586093648386</updated>
       <workItem from="1586093649592" duration="7681000" />
+      <workItem from="1586188415654" duration="5818000" />
+      <workItem from="1586553689511" duration="1210000" />
+      <workItem from="1586603541124" duration="699000" />
+      <workItem from="1586782885931" duration="2000" />
+      <workItem from="1586789943551" duration="9000" />
     </task>
     <servers />
   </component>
@@ -57,26 +97,34 @@
     <option name="version" value="1" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="765" y="236" key="#com.intellij.ide.util.MemberChooser" timestamp="1586095189030">
+    <state x="765" y="236" key="#com.intellij.ide.util.MemberChooser" timestamp="1586189917107">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="765" y="236" key="#com.intellij.ide.util.MemberChooser/0.0.1920.1040@0.0.1920.1040" timestamp="1586095189030" />
-    <state width="1877" height="282" key="GridCell.Tab.0.bottom" timestamp="1586100625914">
+    <state x="765" y="236" key="#com.intellij.ide.util.MemberChooser/0.0.1920.1040@0.0.1920.1040" timestamp="1586189917107" />
+    <state x="740" y="275" key="FileChooserDialogImpl" timestamp="1586603550214">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="282" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1586100625914" />
-    <state width="1877" height="282" key="GridCell.Tab.0.center" timestamp="1586100625914">
+    <state x="740" y="275" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1586603550214" />
+    <state width="1877" height="279" key="GridCell.Tab.0.bottom" timestamp="1586194608323">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="282" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1586100625914" />
-    <state width="1877" height="282" key="GridCell.Tab.0.left" timestamp="1586100625912">
+    <state width="1877" height="279" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1586194608323" />
+    <state width="1877" height="279" key="GridCell.Tab.0.center" timestamp="1586194608323">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="282" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1586100625912" />
-    <state width="1877" height="282" key="GridCell.Tab.0.right" timestamp="1586100625914">
+    <state width="1877" height="279" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1586194608323" />
+    <state width="1877" height="279" key="GridCell.Tab.0.left" timestamp="1586194608323">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="282" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1586100625914" />
+    <state width="1877" height="279" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1586194608323" />
+    <state width="1877" height="279" key="GridCell.Tab.0.right" timestamp="1586194608323">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="279" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1586194608323" />
+    <state x="640" y="344" key="com.intellij.ide.util.TipDialog" timestamp="1586789943695">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="640" y="344" key="com.intellij.ide.util.TipDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1586789943695" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -107,8 +155,8 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-method">
           <url>file://$PROJECT_DIR$/src/modelo/Profesor.java</url>
-          <line>38</line>
-          <properties class="modelo.Profesor" method="iniciarSession">
+          <line>54</line>
+          <properties class="modelo.Profesor">
             <option name="EMULATED" value="true" />
           </properties>
           <option name="timeStamp" value="7" />
