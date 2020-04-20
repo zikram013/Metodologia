@@ -9,7 +9,7 @@ public class Main {
     public static void main (String[] arg){
 
         Usuario usuario = new Estudiante("Angel", "Chino", "el chino", "angel@urjc.es", "chino","estudiante");
-        Usuario usuario1 = new Estudiante("Angel", "Chino", "el chino", "angel@urjc.es", "chino","admin");
+        Usuario usuario1 = new Estudiante("Angel", "Chino", "almendra", "almendra@urjc.es", "españolito","admin");
 
 
         controlador.guardarUsuario(usuario);
@@ -17,7 +17,7 @@ public class Main {
 
         controlador.listaUsuarios();
 
-       controlador.iniciarSession();
+        controlador.iniciarSession();
 
     }
 }

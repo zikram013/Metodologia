@@ -1,23 +1,32 @@
 package modelo;
 
-public class Usuario {
+import java.util.ArrayList;
+import java.util.List;
+
+import Interfaces.Suscriptor;
+
+public class Usuario implements Suscriptor{
 
     protected String nombre;
-    protected String apllidos;
+    protected String apellidos;
     protected String nick;
     protected String email;
-    protected String contraseÃ±a;
+    protected String contraseña;
+    protected List<String> notificaciones;
+    protected String rol;
 
     public Usuario() {
 
     }
 
-    public Usuario(String nombre, String apllidos, String nick, String email, String contraseÃ±a) {
+    public Usuario(String nombre, String apllidos, String nick, String email, String contraseña, String rol) {
         this.nombre = nombre;
-        this.apllidos = apllidos;
+        this.apellidos = apllidos;
         this.nick = nick;
         this.email = email;
-        this.contraseÃ±a = contraseÃ±a;
+        this.contraseña = contraseña;
+        this.notificaciones = new ArrayList<String>();
+        this.rol = rol;
     }
 
     public String getNick() {
@@ -36,22 +45,44 @@ public class Usuario {
         this.email = email;
     }
 
-    public String getContraseÃ±a() {
-        return contraseÃ±a;
+    public String getContraseña() {
+        return contraseña;
     }
 
-    public void setContraseÃ±a(String contraseÃ±a) {
-        this.contraseÃ±a = contraseÃ±a;
+    public void setContraseña(String contraseña) {
+        this.contraseña = contraseña;
     }
 
-    @Override
+    public List<String> getNotificaciones() {
+		return notificaciones;
+	}
+
+	public void setNotificaciones(List<String> notificaciones) {
+		this.notificaciones = notificaciones;
+	}
+
+	public String getRol() {
+		return rol;
+	}
+
+	public void setRol(String rol) {
+		this.rol = rol;
+	}
+
+	@Override
     public String toString() {
         return "usarios.Usuario{" +
                 "nombre='" + nombre + '\'' +
-                ", apllidos='" + apllidos + '\'' +
+                ", apllidos='" + apellidos + '\'' +
                 ", nick='" + nick + '\'' +
                 ", email='" + email + '\'' +
-                ", contraseÃ±a='" + contraseÃ±a + '\'' +
+                ", contraseña='" + contraseña + '\'' + 
+                ", rol='" + rol + '\'' +
                 '}';
     }
+
+	@Override
+	public void recibirNotificacion(String notificacion) {		
+		this.notificaciones.add(notificacion);		
+	}
 }

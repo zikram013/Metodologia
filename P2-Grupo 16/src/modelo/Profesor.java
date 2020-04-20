@@ -13,22 +13,14 @@ public class Profesor extends Usuario {
         this.penalizacion = penalizacion;
     }
 
-    public Profesor(String nombre, String apllidos, String nick, String email, String contraseÃ±a, String rol, boolean penalizacion) {
-        super(nombre, apllidos, nick, email, contraseÃ±a);
+    public Profesor(String nombre, String apllidos, String nick, String email, String contraseña, String rol, boolean penalizacion) {
+        super(nombre, apllidos, nick, email, contraseña, rol);
         this.rol = rol;
         this.penalizacion = penalizacion;
     }
 
-    public Profesor(String nombre, String apllidos, String nick, String email, String contraseÃ±a, String rol) {
-        super(nombre, apllidos, nick, email, contraseÃ±a);
-        this.rol = rol;
-    }
-
-    public String getRol() {
-        return rol;
-    }
-
-    public void setRol(String rol) {
+    public Profesor(String nombre, String apllidos, String nick, String email, String contraseña, String rol) {
+        super(nombre, apllidos, nick, email, contraseña, rol);
         this.rol = rol;
     }
 
@@ -45,10 +37,10 @@ public class Profesor extends Usuario {
         return "Profesor{" +
                 "rol='" + rol + '\'' +
                 ", nombre='" + nombre + '\'' +
-                ", apllidos='" + apllidos + '\'' +
+                ", apellidos='" + apellidos + '\'' +
                 ", nick='" + nick + '\'' +
                 ", email='" + email + '\'' +
-                ", contraseÃ±a='" + contraseÃ±a + '\'' +
+                ", contraseña='" + contraseña + '\'' +
                 '}';
     }
 }

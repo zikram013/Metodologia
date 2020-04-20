@@ -9,17 +9,8 @@ public class Admin extends Usuario {
     public Admin() {
     }
 
-    public Admin(String nombre, String apllidos, String nick, String email, String contraseÃ±a, String rol) {
-        super(nombre, apllidos, nick, email, contraseÃ±a);
-        this.rol = rol;
-    }
-
-    public String getRol() {
-        return rol;
-    }
-
-    public void setRol(String rol) {
-        this.rol = rol;
+    public Admin(String nombre, String apllidos, String nick, String email, String contraseña, String rol) {
+        super(nombre, apllidos, nick, email, contraseña, rol);
     }
 
     @Override
@@ -27,10 +18,10 @@ public class Admin extends Usuario {
         return "Admin{" +
                 "rol='" + rol + '\'' +
                 ", nombre='" + nombre + '\'' +
-                ", apllidos='" + apllidos + '\'' +
+                ", apllidos='" + apellidos + '\'' +
                 ", nick='" + nick + '\'' +
                 ", email='" + email + '\'' +
-                ", contraseÃ±a='" + contraseÃ±a + '\'' +
+                ", contraseña='" + contraseña + '\'' +
                 '}';
     }
 }

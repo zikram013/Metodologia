@@ -9,32 +9,20 @@ import java.util.Scanner;
 
 public class Estudiante extends Usuario {
 
-    private String rol;
     private boolean penalizacion;
-    private List<String> subcricione;
-    private List<String> subcriciones;
 
     public Estudiante() {
     }
 
-    public Estudiante(String nombre, String apllidos, String nick, String email, String contraseÃ±a, String rol) {
-        super(nombre, apllidos, nick, email, contraseÃ±a);
-        this.rol = rol;
+    public Estudiante(String nombre, String apellidos, String nick, String email, String contraseña, String rol) {
+        super(nombre, apellidos, nick, email, contraseña, rol);
     }
 
-    public String getRol() {
-        return rol;
-    }
-
-    public void setRol(String rol) {
-        this.rol = rol;
-    }
-
-    public boolean isPenalizacion() {
+    public boolean estaPenalizado() {
         return penalizacion;
     }
 
-    public void setPenalizacion(boolean penalizacion) {
+    public void penalizar(boolean penalizacion) {
         this.penalizacion = penalizacion;
     }
 
@@ -43,10 +31,10 @@ public class Estudiante extends Usuario {
         return "Estudiante{" +
                 "rol='" + rol + '\'' +
                 ", nombre='" + nombre + '\'' +
-                ", apllidos='" + apllidos + '\'' +
+                ", apellidos='" + apellidos + '\'' +
                 ", nick='" + nick + '\'' +
                 ", email='" + email + '\'' +
-                ", contraseÃ±a='" + contraseÃ±a + '\'' +
+                ", contraseña='" + contraseña + '\'' +
                 '}';
     }
 }
