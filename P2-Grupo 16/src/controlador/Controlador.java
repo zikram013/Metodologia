@@ -3,22 +3,28 @@ package controlador;
 import modelo.Estudiante;
 import modelo.Profesor;
 import modelo.Usuario;
+import controlador.SubForo;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Scanner;
 
 public class Controlador {
 
-    //private List<Usuario> usuarios = new ArrayList<>();
-    private Estudiante estudiante;
-
     HashMap<String, Usuario> usuarios = new HashMap<>();
+    HashMap<String, SubForo> subforos = new HashMap<>();
+    Usuario sesion = new Usuario();
+    
+    public HashMap<String, SubForo> getSubforos() {
+    	return this.subforos;
+    }
+    
+    public HashMap<String, Usuario> getUsuarios() {
+    	return this.usuarios;
+    }
 
     public void guardarUsuario(Usuario u){
-    	if(!usuarios.containsKey(u.getEmail())) {
-	        usuarios.put(u.getEmail(), u);
+    	if(!usuarios.containsKey(u.getNick())) {
+	        usuarios.put(u.getNick(), u);
 	        System.out.println("El usuario: "+u.getNick() + " ha sido registrado con éxito");
     	}
 
@@ -26,65 +32,74 @@ public class Controlador {
 
     public void listaUsuarios(){
     	System.out.println("Usuarios del sistema: ");
-    	for (String email: usuarios.keySet()){
-    		System.out.print("Correo: " + email.toString() + " Contraseña: " + usuarios.get(email).getContraseña() + "\n");
+    	for (String nick: usuarios.keySet()){
+    		System.out.print("Nick: " + nick.toString() + ". Contraseña: " + usuarios.get(nick).getContraseña() + ". Rol: " + usuarios.get(nick).getRol() + "\n");
     	}
     }
 
 
     public void borrarUsario(Usuario u){
         if(u != null){
-        	usuarios.remove(u.getEmail());
+        	usuarios.remove(u.getNick());
             System.out.println("Usuario eliminadoo");
         }
         else
         	System.out.println("El usuario introducido no es correcto");
     }
 
-    public void iniciarSession(){
-        Scanner sc = new Scanner(System.in);
-        System.out.println("Introduce tu email: ");
-        String email = sc.nextLine();
-        System.out.println("Introduce tu contraseña: ");
-        String password = sc.nextLine();
+    public boolean iniciarSession(Usuario usuario){
         try{
-            if(usuarios.containsKey(email)&&(usuarios.get(email).getContraseña().equals(password)))
-            	System.out.println("Acabas de iniciar sesión como: " + usuarios.get(email).getNick());
-            else if(usuarios.containsKey(email)&&(!usuarios.get(email).getContraseña().equals(password)))
+            if(usuarios.containsKey(usuario.getNick())&&(usuarios.get(usuario.getNick()).getContraseña().equals(usuario.getContraseña()))) {
+            	System.out.println("Acabas de iniciar sesión como: " + usuarios.get(usuario.getNick()).getNick());
+            	sesion = usuarios.get(usuario.getNick());
+            	return true;
+            }
+            else if(usuarios.containsKey(usuario.getNick())&&(!usuarios.get(usuario.getNick()).getContraseña().equals(usuario.getContraseña()))) {
             	System.out.println("Contraseña incorrecta");
-            else
+            	return false;
+            }
+            else {
                 System.out.println("El usuario no se encuentra registrado");
+            	return false;
+            }
         }catch (Exception e){
             System.out.println("Error en el servidor "+ e.getLocalizedMessage());
+            return false;
         }
 
     }
 
-    public void registrarUsuario(){
-        Scanner sc = new Scanner(System.in);
-        System.out.println("Introduce tu nombre: ");
-        String nombre = sc.nextLine();
-        System.out.println("Introduce tus apellidos: ");
-        String apellidos = sc.nextLine();
-        System.out.println("Introduce tu nick: ");
-        String nick = sc.nextLine();
-        System.out.println("Introduce tu email: ");
-        String email = sc.nextLine();
-        System.out.println("Introduce tu contraseña: ");
-        String contraseña = sc.nextLine();
-
-
-        String[] parts = email.split("@");
-        String part1 = parts[0];
+    public boolean registrarUsuario(Usuario usuario){
+        String[] parts = usuario.getEmail().split("@");
         String part2 = parts[1];
-        if(email.equals("urjc.es")){
-            Usuario profesor = new Profesor(nombre, apellidos, nick, email, contraseña, "profesor");
-            usuarios.put(profesor.getEmail(), profesor);
-        }else if(email.equals("alumnos.urjc.es")){
-            Usuario estudiante = new Estudiante(nombre, apellidos, nick, email, contraseña, "estudiante");
-            usuarios.put(estudiante.getEmail(), estudiante);
+        if(part2.equals("urjc.es")){
+            usuarios.put(usuario.getNick(), usuario);
+            return true;
+        }else if(part2.equals("alumnos.urjc.es")){
+            usuarios.put(usuario.getNick(), usuario);
+            return true;
         }else{
-            System.out.println("Los datos introducidos son erroneos. Porfavor revisalos y vuela a intentarlo");
+            return false;
         }
     }
+    
+    public Usuario getUsuarioConectado() {
+    	return this.sesion;
+    }
+    
+    public boolean Logout() {
+    	sesion = null;
+    	return false;
+    }
+    
+    public boolean CrearSubforo(SubForo subforo) {
+        boolean creado = false;
+        if(!subforos.containsKey(subforo.getTitulo())) {
+	    	subforos.put(subforo.getTitulo(), subforo);
+	    	creado = true;
+	    	return creado;
+        }
+    	return creado;
+    }
+    
 }

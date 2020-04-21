@@ -19,9 +19,9 @@ public class Usuario implements Suscriptor{
 
     }
 
-    public Usuario(String nombre, String apllidos, String nick, String email, String contraseña, String rol) {
+    public Usuario(String nombre, String apellidos, String nick, String email, String contraseña, String rol) {
         this.nombre = nombre;
-        this.apellidos = apllidos;
+        this.apellidos = apellidos;
         this.nick = nick;
         this.email = email;
         this.contraseña = contraseña;

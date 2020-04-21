@@ -1,7 +1,5 @@
 package modelo;
 
-import java.util.Scanner;
-
 public class Admin extends Usuario {
 
     public String rol;
