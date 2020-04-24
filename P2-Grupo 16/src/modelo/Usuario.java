@@ -85,4 +85,11 @@ public class Usuario implements Suscriptor{
 	public void recibirNotificacion(String notificacion) {		
 		this.notificaciones.add(notificacion);		
 	}
+	
+	public String toStringNotificacion() {
+		String notificaciones = "Comentarios: \n";
+		for(int i = 0; i < this.notificaciones.size(); i++)
+			notificaciones+= this.notificaciones.get(i) + "\n";
+		return notificaciones;
+	}
 }

@@ -1,24 +1,25 @@
 package controlador;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import Interfaces.Asignatura;
+import modelo.Entrada;
 import modelo.Usuario;
 
 public class SubForo implements Asignatura{
 	
 	String titulo;
-	List<Usuario> suscritos;
+	HashMap<String, Usuario> suscritos = new HashMap<>();
+	HashMap<String, Entrada> entradas = new HashMap<>();
 	
 	public SubForo() {
 		this.titulo = "";
-		this.suscritos = new ArrayList<Usuario>();
     }
 	
 	public SubForo(String titulo) {
 		this.titulo = titulo;
-		this.suscritos = new ArrayList<Usuario>();
     }
 
 	public String getTitulo() {
@@ -28,24 +29,39 @@ public class SubForo implements Asignatura{
 	public void setTitulo(String titulo) {
 		this.titulo = titulo;
 	}
+	
+	public HashMap<String, Entrada> getEntradas() {
+		return entradas;
+	}
+
+	public void setEntradas(HashMap<String, Entrada> entradas) {
+		this.entradas = entradas;
+	}
 
 	@Override
 	public void añadirSubscritor(Usuario usuario) {
-		this.suscritos.add(usuario);
+		this.suscritos.put(usuario.getNick(), usuario);
 	}
 
 	@Override
 	public void eliminarSubscritor(Usuario usuario) {
-		this.suscritos.remove(usuario);
+		this.suscritos.remove(usuario.getNick());
 	}
 
 	@Override
 	public void notificar() {
-		for(int i = 0; i < this.suscritos.size(); i++) {
-			this.suscritos.get(i).getNotificaciones().add("");
-		}
+		for (String nick: suscritos.keySet()){
+			this.suscritos.get(nick).getNotificaciones().add("Nueva entrada en el foro: '" + this.getTitulo() + "'.\n");
+    	}
+	}	
+	
+	public void crearEntrada(Entrada entrada) {
+		this.entradas.put(entrada.getTitulo(), entrada);
+		this.notificar();
 	}
 	
-	
+	public void eliminarEntrada(Entrada entrada) {
+		this.entradas.remove(entrada.getTitulo());
+	}
 	
 }

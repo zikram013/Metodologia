@@ -1,5 +1,7 @@
 package controlador;
 
+import modelo.Comentario;
+import modelo.Entrada;
 import modelo.Estudiante;
 import modelo.Profesor;
 import modelo.Usuario;
@@ -27,7 +29,6 @@ public class Controlador {
 	        usuarios.put(u.getNick(), u);
 	        System.out.println("El usuario: "+u.getNick() + " ha sido registrado con éxito");
     	}
-
     }
 
     public void listaUsuarios(){
@@ -36,7 +37,6 @@ public class Controlador {
     		System.out.print("Nick: " + nick.toString() + ". Contraseña: " + usuarios.get(nick).getContraseña() + ". Rol: " + usuarios.get(nick).getRol() + "\n");
     	}
     }
-
 
     public void borrarUsario(Usuario u){
         if(u != null){
@@ -52,6 +52,8 @@ public class Controlador {
             if(usuarios.containsKey(usuario.getNick())&&(usuarios.get(usuario.getNick()).getContraseña().equals(usuario.getContraseña()))) {
             	System.out.println("Acabas de iniciar sesión como: " + usuarios.get(usuario.getNick()).getNick());
             	sesion = usuarios.get(usuario.getNick());
+            	if(sesion.getNotificaciones().size()>0)
+            		this.mostrarNotificaciones();
             	return true;
             }
             else if(usuarios.containsKey(usuario.getNick())&&(!usuarios.get(usuario.getNick()).getContraseña().equals(usuario.getContraseña()))) {
@@ -100,6 +102,25 @@ public class Controlador {
 	    	return creado;
         }
     	return creado;
+    }
+    
+    public void crearEntrada(String titulo, Entrada entrada) {
+    	if(this.sesion!=null) {
+    		this.subforos.get(titulo).crearEntrada(entrada);
+    		System.out.println("Entrada creada satisfactoriamente");
+    	}
+    }
+    
+    public void comentarEntrada(String titulo, String titulo2, Comentario comentario) {
+    	if(this.sesion!=null) {
+    		if(this.subforos.get(titulo).getEntradas().get(titulo2).comentar(comentario))
+    			System.out.println("Comentario añadido satisfactoriamente");
+    	}
+    }
+    
+    public String mostrarNotificaciones() {
+    	System.out.println("Tienes las siguientes notificaciones: \n");
+    	return this.sesion.toStringNotificacion();
     }
     
 }
