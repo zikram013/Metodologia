@@ -1,5 +1,3 @@
-import java.util.Scanner;
-
 import controlador.Controlador;
 import controlador.SubForo;
 import modelo.Admin;
@@ -19,47 +17,28 @@ public class Main {
         Usuario ejemplo2 = new Profesor("Gustavo", "Cebrian", "altoke", "gustavo.cebrian@urjc.es", "1234","profesor");
         SubForo sub = new SubForo("MP");
         SubForo newsub = new SubForo("DAW");
-        boolean sesion = false;
-        boolean registro = false;
-        Usuario uConectado = new Usuario();
 
-        if(registro = controlador.registrarUsuario(usuario))
-    		System.out.println("Usuario '" + usuario.getNick() + "' registrado correctamente");
-        if(registro = controlador.registrarUsuario(usuario1))
-    		System.out.println("Usuario '" + usuario1.getNick() + "' registrado correctamente");
-        if(registro = controlador.registrarUsuario(usuario2))
-    		System.out.println("Usuario '" + usuario2.getNick() + "' registrado correctamente");
-        System.out.println();
+        controlador.registrarUsuario(usuario);
+        controlador.registrarUsuario(usuario1);
+        controlador.registrarUsuario(usuario2);
+        
+        System.out.println();   
+        
         controlador.getSubforos().put(sub.getTitulo(), sub);
-
         controlador.listaUsuarios();
         
         System.out.println();
-
-        sesion = controlador.iniciarSession(usuario);
         
-        if(sesion)
-        	uConectado = controlador.getUsuarioConectado();
+        controlador.iniciarSession(usuario);
         
-        if(!sesion)
-        	if(registro = controlador.registrarUsuario(ejemplo))
-        		System.out.println("Usuario registrado correctamente");
-        	else
-        		System.out.println("Este usuario ya se encuentra registrado");
-        else
-        	System.out.println("No puedes crear un usuario sin cerrar antes la sesión");
+        /*Pruebas con el primer usuario con 'Rol'='estudiante'*/
         
-        if(sesion && uConectado.getRol().equals("profesor"))
-        	if(controlador.CrearSubforo(sub))
-        		System.out.println("Subforo de '" + sub.getTitulo() + "' creado con exito");
-        	else
-        		System.out.println("El subforo de '" + sub.getTitulo() + "' ya existe");
-        else
-        	System.out.println("No tienes los permisos para poder crear un subforo");
+        controlador.registrarUsuario(ejemplo);
+        controlador.CrearSubforo(sub);
         
-        if(sesion) {
-	        if(controlador.getSubforos().containsKey("MP")&&controlador.getUsuarios().get(uConectado.getNick()).getRol().equals("estudiante")) {
-	        	controlador.getSubforos().get("MP").añadirSubscritor(uConectado);
+        if(controlador.getUsuarioConectado()!=null) {
+	        if(controlador.getSubforos().containsKey("MP") && controlador.getUsuarios().get(controlador.getUsuarioConectado().getNick()).getRol().equals("estudiante")) {
+	        	controlador.getSubforos().get("MP").añadirSubscritor(controlador.getUsuarioConectado());
 	        	System.out.println("Te has suscrito satisfactoriamente al subforo de: '" + controlador.getSubforos().get("MP").getTitulo() + "'");
 	        }
 	        else if(!controlador.getSubforos().containsKey("MP"))
@@ -68,37 +47,38 @@ public class Main {
 	        	System.out.println("No puedes suscribirte al no ser una sesión de tipo 'estudiante'");
         }
         
-        if(!controlador.Logout()) {
-        	System.out.println("Sesión de '" + uConectado.getNick() + "' cerrada satisfactoriamente.");
-        	sesion = controlador.Logout();
+        controlador.Logout(); 
+        System.out.println();
+        controlador.iniciarSession(usuario1);
+        
+        /*Pruebas con el primer usuario con 'Rol'='profesor'*/
+        
+        controlador.registrarUsuario(ejemplo);        
+        controlador.CrearSubforo(newsub);
+        
+        if(controlador.getUsuarioConectado()!=null) {
+	        if(controlador.getSubforos().containsKey("MP")&&controlador.getUsuarios().get(controlador.getUsuarioConectado().getNick()).getRol().equals("estudiante")) {
+	        	controlador.getSubforos().get("MP").añadirSubscritor(controlador.getUsuarioConectado());
+	        	System.out.println("Te has suscrito satisfactoriamente al subforo de: '" + controlador.getSubforos().get("MP").getTitulo() + "'");
+	        }
+	        else if(!controlador.getSubforos().containsKey("MP"))
+	        	System.out.println("Este subforo no existe");
+	        else
+	        	System.out.println("No puedes suscribirte al no ser una sesión de tipo 'estudiante'");
         }
         
+        controlador.Logout();     
         System.out.println();
         
-        sesion = controlador.iniciarSession(usuario1);
+        /*Pruebas con un usuario nuevo*/
         
-        if(sesion)
-        	uConectado = controlador.getUsuarioConectado();
+        controlador.registrarUsuario(ejemplo);
+        controlador.iniciarSession(ejemplo);
+        controlador.CrearSubforo(newsub);
         
-        if(!sesion)
-        	if(registro = controlador.registrarUsuario(ejemplo))
-        		System.out.println("Usuario registrado correctamente");
-        	else
-        		System.out.println("Este usuario ya se encuentra registrado");
-        else
-        	System.out.println("No puedes crear un usuario sin cerrar antes la sesión");
-        
-        if(sesion && uConectado.getRol().equals("profesor"))
-        	if(controlador.CrearSubforo(newsub))
-        		System.out.println("Subforo de '" + newsub.getTitulo() + "' creado con exito");
-        	else
-        		System.out.println("El subforo de '" + newsub.getTitulo() + "' ya existe");
-        else
-        	System.out.println("No tienes los permisos para poder crear un subforo");
-        
-        if(sesion) {
-	        if(controlador.getSubforos().containsKey("MP")&&controlador.getUsuarios().get(uConectado.getNick()).getRol().equals("estudiante")) {
-	        	controlador.getSubforos().get("MP").añadirSubscritor(uConectado);
+        if(controlador.getUsuarioConectado()!=null) {
+	        if(controlador.getSubforos().containsKey("MP")&&controlador.getUsuarios().get(controlador.getUsuarioConectado().getNick()).getRol().equals("estudiante")) {
+	        	controlador.getSubforos().get("MP").añadirSubscritor(controlador.getUsuarioConectado());
 	        	System.out.println("Te has suscrito satisfactoriamente al subforo de: '" + controlador.getSubforos().get("MP").getTitulo() + "'");
 	        }
 	        else if(!controlador.getSubforos().containsKey("MP"))
@@ -107,50 +87,7 @@ public class Main {
 	        	System.out.println("No puedes suscribirte al no ser una sesión de tipo 'estudiante'");
         }
         
-        if(!controlador.Logout()) {
-        	System.out.println("Sesión de '" + uConectado.getNick() + "' cerrada satisfactoriamente.");
-        	sesion = controlador.Logout();
-        }
-        
-        System.out.println();
-        
-        if(sesion)
-        	uConectado = controlador.getUsuarioConectado();
-        
-        if(!sesion)
-        	if(registro = controlador.registrarUsuario(ejemplo))
-        		System.out.println("Usuario '" + ejemplo.getNick() + "' registrado correctamente");
-        	else
-        		System.out.println("Este usuario ya se encuentra registrado");
-        else
-        	System.out.println("No puedes crear un usuario sin cerrar antes la sesión");
-        
-        sesion = controlador.iniciarSession(ejemplo);
-        
-        if(sesion && uConectado.getRol().equals("profesor"))
-        	if(controlador.CrearSubforo(newsub))
-        		System.out.println("Subforo de '" + newsub.getTitulo() + "' creado con exito");
-        	else
-        		System.out.println("El subforo de '" + newsub.getTitulo() + "' ya existe");
-        else
-        	System.out.println("No tienes los permisos para poder crear un subforo");
-        
-        if(sesion) {
-	        if(controlador.getSubforos().containsKey("MP")&&controlador.getUsuarios().get(uConectado.getNick()).getRol().equals("estudiante")) {
-	        	controlador.getSubforos().get("MP").añadirSubscritor(uConectado);
-	        	System.out.println("Te has suscrito satisfactoriamente al subforo de: '" + controlador.getSubforos().get("MP").getTitulo() + "'");
-	        }
-	        else if(!controlador.getSubforos().containsKey("MP"))
-	        	System.out.println("Este subforo no existe");
-	        else
-	        	System.out.println("No puedes suscribirte al no ser una sesión de tipo 'estudiante'");
-        }
-        
-        if(controlador.Logout()) {
-        	System.out.println("Sesión de '" + uConectado.getNick() + "' cerrada satisfactoriamente.");
-        	sesion = controlador.Logout();
-        }
-        	
+        controlador.Logout();
 
     }
 }

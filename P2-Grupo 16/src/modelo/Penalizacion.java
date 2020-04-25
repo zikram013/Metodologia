@@ -18,8 +18,6 @@ public class Penalizacion {
 	}
 	public void setFechaFin(Date fechaFin) {
 		this.fechaFin = fechaFin;
-	}
-	
-	
+	}	
 
 }

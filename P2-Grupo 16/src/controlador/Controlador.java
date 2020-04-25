@@ -14,7 +14,7 @@ public class Controlador {
 
     HashMap<String, Usuario> usuarios = new HashMap<>();
     HashMap<String, SubForo> subforos = new HashMap<>();
-    Usuario sesion = new Usuario();
+    Usuario sesion = null;
     
     public HashMap<String, SubForo> getSubforos() {
     	return this.subforos;
@@ -72,17 +72,29 @@ public class Controlador {
     }
 
     public boolean registrarUsuario(Usuario usuario){
-        String[] parts = usuario.getEmail().split("@");
-        String part2 = parts[1];
-        if(part2.equals("urjc.es")){
-            usuarios.put(usuario.getNick(), usuario);
-            return true;
-        }else if(part2.equals("alumnos.urjc.es")){
-            usuarios.put(usuario.getNick(), usuario);
-            return true;
-        }else{
-            return false;
-        }
+    	if(this.getUsuarioConectado()==null) {
+	        String[] parts = usuario.getEmail().split("@");
+	        String part2 = parts[1];
+	        if(part2.equals("urjc.es")){
+	            usuarios.put(usuario.getNick(), usuario);
+	            System.out.println("Usuario '" + usuario.getNick() + "' registrado correctamente");
+	            return true;
+	        }else if(part2.equals("alumnos.urjc.es")){
+	            usuarios.put(usuario.getNick(), usuario);
+	            System.out.println("Usuario '" + usuario.getNick() + "' registrado correctamente");
+	            return true;
+	        }
+	        else if(this.getUsuarios().containsKey(usuario.getNick())){
+	        	System.out.println("Este usuario ya se encuentra registrado");
+	        	return false;
+	        }      
+	        else{
+	        	System.out.println("El email no coincide con los parámetros del registro.");
+	            return false;
+	        }
+    	}
+    	System.out.println("No puedes crear un usuario sin cerrar antes la sesión");
+    	return false;
     }
     
     public Usuario getUsuarioConectado() {
@@ -90,18 +102,25 @@ public class Controlador {
     }
     
     public boolean Logout() {
+    	System.out.println("Sesión de '" + sesion.getNick() + "' cerrada satisfactoriamente.");
     	sesion = null;
     	return false;
     }
     
     public boolean CrearSubforo(SubForo subforo) {
-        boolean creado = false;
-        if(!subforos.containsKey(subforo.getTitulo())) {
-	    	subforos.put(subforo.getTitulo(), subforo);
-	    	creado = true;
-	    	return creado;
-        }
-    	return creado;
+    	if(this.getUsuarioConectado()!=null && this.getUsuarioConectado().getRol().equals("profesor")) {
+	        if(!subforos.containsKey(subforo.getTitulo())) {
+		    	subforos.put(subforo.getTitulo(), subforo);
+		    	System.out.println("Subforo de '" + subforo.getTitulo() + "' creado con exito");
+		    	return true;
+	        }
+	        else {
+	        	System.out.println("El subforo de '" + subforo.getTitulo() + "' ya existe");
+	        	return false;
+	        }
+    	}
+    	System.out.println("No tienes los permisos para poder crear un subforo");
+    	return false;
     }
     
     public void crearEntrada(String titulo, Entrada entrada) {
