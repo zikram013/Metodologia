@@ -1,16 +1,16 @@
 package modelo;
 
-public class Ejercicio extends EntradaGenerica{
+public class Ejercicio extends Entrada{
 	
-	String solucion;
+	private String solucion;
 	
 	public Ejercicio() {
 		super();
 		this.solucion = "";
 	}
 	
-	public Ejercicio(EntradaGenerica entradaGenerica, String solucion) {
-		super(entradaGenerica);
+	public Ejercicio(EntradaGenerica entradaGenerica, String solucion, Usuario usuario) {
+		super(entradaGenerica, usuario);
 		this.solucion = solucion;
 	}
 

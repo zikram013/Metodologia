@@ -1,8 +1,12 @@
 import controlador.Controlador;
 import controlador.SubForo;
 import modelo.Admin;
+import modelo.Ejercicio;
+import modelo.Entrada;
+import modelo.EntradaGenerica;
 import modelo.Estudiante;
 import modelo.Profesor;
+import modelo.TextoPlano;
 import modelo.Usuario;
 
 public class Main {
@@ -42,11 +46,14 @@ public class Main {
 	        	System.out.println("Te has suscrito satisfactoriamente al subforo de: '" + controlador.getSubforos().get("MP").getTitulo() + "'");
 	        }
 	        else if(!controlador.getSubforos().containsKey("MP"))
-	        	System.out.println("Este subforo no existe");
+	        	System.err.println("Este subforo no existe");
 	        else
-	        	System.out.println("No puedes suscribirte al no ser una sesión de tipo 'estudiante'");
+	        	System.err.println("No puedes suscribirte al no ser una sesión de tipo 'estudiante'");
         }
         
+        Entrada entrada = new TextoPlano(new EntradaGenerica("AYUDA", "Vamos a aprobar MP"), controlador.getUsuarioConectado());
+        controlador.crearEntrada("MP", entrada);
+        controlador.editarEntrada("MP", entrada, "SIII", "Parece que funciona");
         controlador.Logout(); 
         System.out.println();
         controlador.iniciarSession(usuario1);
@@ -62,11 +69,12 @@ public class Main {
 	        	System.out.println("Te has suscrito satisfactoriamente al subforo de: '" + controlador.getSubforos().get("MP").getTitulo() + "'");
 	        }
 	        else if(!controlador.getSubforos().containsKey("MP"))
-	        	System.out.println("Este subforo no existe");
+	        	System.err.println("Este subforo no existe");
 	        else
-	        	System.out.println("No puedes suscribirte al no ser una sesión de tipo 'estudiante'");
+	        	System.err.println("No puedes suscribirte al no ser una sesión de tipo 'estudiante'");
         }
         
+        controlador.editarEntrada("MP", entrada, "SUUU", "He editado una entrada que no es mia.");
         controlador.Logout();     
         System.out.println();
         
@@ -82,9 +90,9 @@ public class Main {
 	        	System.out.println("Te has suscrito satisfactoriamente al subforo de: '" + controlador.getSubforos().get("MP").getTitulo() + "'");
 	        }
 	        else if(!controlador.getSubforos().containsKey("MP"))
-	        	System.out.println("Este subforo no existe");
+	        	System.err.println("Este subforo no existe");
 	        else
-	        	System.out.println("No puedes suscribirte al no ser una sesión de tipo 'estudiante'");
+	        	System.err.println("No puedes suscribirte al no ser una sesión de tipo 'estudiante'");
         }
         
         controlador.Logout();

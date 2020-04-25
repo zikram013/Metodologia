@@ -56,12 +56,12 @@ public class SubForo implements Asignatura{
 	}	
 	
 	public void crearEntrada(Entrada entrada) {
-		this.entradas.put(entrada.getTitulo(), entrada);
+		this.entradas.put(entrada.getEntradaGenerica().getTitulo(), entrada);
 		this.notificar();
 	}
 	
 	public void eliminarEntrada(Entrada entrada) {
-		this.entradas.remove(entrada.getTitulo());
+		this.entradas.remove(entrada.getEntradaGenerica().getTitulo());
 	}
 	
 }

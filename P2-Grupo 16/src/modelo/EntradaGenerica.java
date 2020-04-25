@@ -16,6 +16,14 @@ public class EntradaGenerica{
 		this.comentario = null;
 	}
 	
+	public EntradaGenerica(String titulo, String texto) {
+		this.puntuacion = 0;
+		this.titulo = titulo;
+		this.texto = texto;
+		this.verificada = false;
+		this.comentario = null;
+	}
+	
 	public EntradaGenerica(int puntuacion, String titulo, String texto, boolean verificada, Comentario comentario) {
 		this.puntuacion = puntuacion;
 		this.titulo = titulo;

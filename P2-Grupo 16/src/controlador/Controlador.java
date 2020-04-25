@@ -15,6 +15,9 @@ public class Controlador {
     HashMap<String, Usuario> usuarios = new HashMap<>();
     HashMap<String, SubForo> subforos = new HashMap<>();
     Usuario sesion = null;
+    public static final String ANSI_GREEN = "\u001B[32m";
+    public static final String ANSI_RED = "\u001B[31m";
+    public static final String ANSI_RESET = "\u001B[0m";
     
     public HashMap<String, SubForo> getSubforos() {
     	return this.subforos;
@@ -44,7 +47,7 @@ public class Controlador {
             System.out.println("Usuario eliminadoo");
         }
         else
-        	System.out.println("El usuario introducido no es correcto");
+        	System.err.println("El usuario introducido no es correcto");
     }
 
     public boolean iniciarSession(Usuario usuario){
@@ -57,15 +60,15 @@ public class Controlador {
             	return true;
             }
             else if(usuarios.containsKey(usuario.getNick())&&(!usuarios.get(usuario.getNick()).getContraseña().equals(usuario.getContraseña()))) {
-            	System.out.println("Contraseña incorrecta");
+            	System.err.println("Contraseña incorrecta");
             	return false;
             }
             else {
-                System.out.println("El usuario no se encuentra registrado");
+                System.err.println("El usuario no se encuentra registrado");
             	return false;
             }
         }catch (Exception e){
-            System.out.println("Error en el servidor "+ e.getLocalizedMessage());
+            System.err.println("Error en el servidor "+ e.getLocalizedMessage());
             return false;
         }
 
@@ -85,15 +88,15 @@ public class Controlador {
 	            return true;
 	        }
 	        else if(this.getUsuarios().containsKey(usuario.getNick())){
-	        	System.out.println("Este usuario ya se encuentra registrado");
+	        	System.err.println("Este usuario ya se encuentra registrado");
 	        	return false;
 	        }      
 	        else{
-	        	System.out.println("El email no coincide con los parámetros del registro.");
+	        	System.err.println("El email no coincide con los parámetros del registro.");
 	            return false;
 	        }
     	}
-    	System.out.println("No puedes crear un usuario sin cerrar antes la sesión");
+    	System.err.println("No puedes crear un usuario sin cerrar antes la sesión");
     	return false;
     }
     
@@ -115,24 +118,39 @@ public class Controlador {
 		    	return true;
 	        }
 	        else {
-	        	System.out.println("El subforo de '" + subforo.getTitulo() + "' ya existe");
+	        	System.err.println("El subforo de '" + subforo.getTitulo() + "' ya existe");
 	        	return false;
 	        }
     	}
-    	System.out.println("No tienes los permisos para poder crear un subforo");
+    	System.err.println("No tienes los permisos para poder crear un subforo");
     	return false;
     }
     
     public void crearEntrada(String titulo, Entrada entrada) {
-    	if(this.sesion!=null) {
+    	if(this.getUsuarioConectado()!=null) {
     		this.subforos.get(titulo).crearEntrada(entrada);
-    		System.out.println("Entrada creada satisfactoriamente");
+    		System.out.println("Entrada creada satisfactoriamente: ");
+    		System.out.println(entrada.toString());
+    	}
+    }
+    
+    public void editarEntrada(String titulo, Entrada entrada, String newTitulo, String newTexto) {
+    	if(this.getUsuarioConectado().getNick()==entrada.getUsuario().getNick() && this.getUsuarioConectado()!=null) {
+    		Entrada aux = entrada;
+    		this.subforos.get(titulo).getEntradas().remove(entrada.getEntradaGenerica().getTitulo());
+    		aux.editar(newTitulo, newTexto);
+    		this.subforos.get(titulo).getEntradas().put(aux.getEntradaGenerica().getTitulo(), aux);
+    		System.out.println("Entrada editada satisfactoriamente: ");
+    		System.out.println(aux.toString());
+    	}
+    	else {
+    		System.err.println("No puedes editar una entrada que no hayas creado tú.");
     	}
     }
     
     public void comentarEntrada(String titulo, String titulo2, Comentario comentario) {
     	if(this.sesion!=null) {
-    		if(this.subforos.get(titulo).getEntradas().get(titulo2).comentar(comentario))
+    		if(this.subforos.get(titulo).getEntradas().get(titulo2).getEntradaGenerica().comentar(comentario))
     			System.out.println("Comentario añadido satisfactoriamente");
     	}
     }
