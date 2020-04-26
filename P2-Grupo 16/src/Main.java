@@ -46,9 +46,9 @@ public class Main {
 	        	System.out.println("Te has suscrito satisfactoriamente al subforo de: '" + controlador.getSubforos().get("MP").getTitulo() + "'");
 	        }
 	        else if(!controlador.getSubforos().containsKey("MP"))
-	        	System.err.println("Este subforo no existe");
+	        	System.out.println("Este subforo no existe");
 	        else
-	        	System.err.println("No puedes suscribirte al no ser una sesión de tipo 'estudiante'");
+	        	System.out.println("No puedes suscribirte al no ser una sesión de tipo 'estudiante'");
         }
         
         Entrada entrada = new TextoPlano(new EntradaGenerica("AYUDA", "Vamos a aprobar MP"), controlador.getUsuarioConectado());
@@ -69,9 +69,9 @@ public class Main {
 	        	System.out.println("Te has suscrito satisfactoriamente al subforo de: '" + controlador.getSubforos().get("MP").getTitulo() + "'");
 	        }
 	        else if(!controlador.getSubforos().containsKey("MP"))
-	        	System.err.println("Este subforo no existe");
+	        	System.out.println("Este subforo no existe");
 	        else
-	        	System.err.println("No puedes suscribirte al no ser una sesión de tipo 'estudiante'");
+	        	System.out.println("No puedes suscribirte al no ser una sesión de tipo 'estudiante'");
         }
         
         controlador.editarEntrada("MP", entrada, "SUUU", "He editado una entrada que no es mia.");
@@ -90,12 +90,51 @@ public class Main {
 	        	System.out.println("Te has suscrito satisfactoriamente al subforo de: '" + controlador.getSubforos().get("MP").getTitulo() + "'");
 	        }
 	        else if(!controlador.getSubforos().containsKey("MP"))
-	        	System.err.println("Este subforo no existe");
+	        	System.out.println("Este subforo no existe");
 	        else
-	        	System.err.println("No puedes suscribirte al no ser una sesión de tipo 'estudiante'");
+	        	System.out.println("No puedes suscribirte al no ser una sesión de tipo 'estudiante'");
         }
         
         controlador.Logout();
+        System.out.println();
+        controlador.iniciarSession(usuario1);
+        
+        if(controlador.getUsuarioConectado()!=null && controlador.getSubforos().get("MP").getEntradas().get("SIII").getEntradaGenerica().comentar("Me parece buena la idea")) {
+        	System.out.println("Has comentado la entrada correctamente.");
+        }
+        else
+        	System.out.println("No puedes comentar una entrada que no ha sido verificada.");
+        
+        controlador.Logout();
+        System.out.println();
+        controlador.iniciarSession(usuario2);
+        boolean verificar = true;
+        controlador.getSubforos().get("MP").getEntradas().get("SIII").getEntradaGenerica().verificar(verificar);
+        if(controlador.getUsuarioConectado()!=null && controlador.getSubforos().get("MP").getEntradas().get("SIII").getEntradaGenerica().isVerificada()) {
+        	System.out.println("Has verificado la entrada satisfactoriamente");
+        }
+        else
+        	System.out.println("Esta entrada ya se encuentra verificada.");
+        
+        controlador.Logout();
+        System.out.println();
+        controlador.iniciarSession(usuario1);
+        
+        if(controlador.getUsuarioConectado()!=null && controlador.getSubforos().get("MP").getEntradas().get("SIII").getEntradaGenerica().comentar("Me parece buena la idea")) {
+        	System.out.println("Has comentado la entrada correctamente.");
+        }
+        else
+        	System.out.println("No puedes comentar una entrada que no ha sido verificada.");
+        
+        controlador.Logout();
+        System.out.println();
+        controlador.iniciarSession(usuario);
+        
+        if(controlador.getUsuarioConectado()!=null && controlador.getSubforos().get("MP").getEntradas().get("SIII").getEntradaGenerica().votar(1)) {
+        	System.out.println("Has votado la entrada correctamente.");
+        }
+        else
+        	System.out.println("No puedes puntuar una entrada que no ha sido verificada.");
 
     }
 }

@@ -36,7 +36,7 @@ public class Entrada{
 	public void setUsuario(Usuario usuario) {
 		this.usuario = usuario;
 	}
-	
+
 	public void editar(String newTitulo, String newTexto) {
 		this.getEntradaGenerica().setTitulo(newTitulo);
 		this.getEntradaGenerica().setTexto(newTexto);

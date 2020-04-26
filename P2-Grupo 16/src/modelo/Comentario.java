@@ -7,18 +7,21 @@ public class Comentario {
 	
 	String texto;
 	int puntuacion;
-	List<Comentario> comentarios;
+	private List<Comentario> comentarios = new ArrayList<Comentario>();
 	
 	public Comentario() {
 		this.texto = "";
 		this.puntuacion = 0;
-		this.comentarios = new ArrayList<Comentario>();
+	}
+	
+	public Comentario(String texto) {
+		this.texto = texto;
+		this.puntuacion = 0;
 	}
 	
 	public Comentario(String texto, int puntuacion) {
 		this.texto = texto;
 		this.puntuacion = puntuacion;
-		this.comentarios = new ArrayList<Comentario>();
 	}
 
 	public String getTexto() {
@@ -34,8 +37,8 @@ public class Comentario {
 	}
 
 	public boolean votar(int puntuacion) {
-		this.puntuacion = puntuacion;
-		return (this.puntuacion != 0) ? true : false;
+		this.puntuacion += puntuacion;
+		return (puntuacion != 0) ? true : false;
 	}
 	
 	public void comentar(Comentario texto) {

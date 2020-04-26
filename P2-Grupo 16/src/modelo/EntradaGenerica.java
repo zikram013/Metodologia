@@ -1,19 +1,23 @@
 package modelo;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+
 public class EntradaGenerica{
 	
-	int puntuacion;
-	String titulo;
-	String texto;
-	boolean verificada;
-	Comentario comentario;
+	private int puntuacion;
+	private String titulo;
+	private String texto;
+	private boolean verificada;
+	private List<Comentario> comentarios = new ArrayList<Comentario>();
+	private HashMap<String, Usuario> votantes = new HashMap<>();
 	
 	public EntradaGenerica() {
 		this.puntuacion = 0;
 		this.titulo = "";
 		this.texto = "";
 		this.verificada = false;
-		this.comentario = null;
 	}
 	
 	public EntradaGenerica(String titulo, String texto) {
@@ -21,15 +25,13 @@ public class EntradaGenerica{
 		this.titulo = titulo;
 		this.texto = texto;
 		this.verificada = false;
-		this.comentario = null;
 	}
 	
-	public EntradaGenerica(int puntuacion, String titulo, String texto, boolean verificada, Comentario comentario) {
+	public EntradaGenerica(int puntuacion, String titulo, String texto, boolean verificada) {
 		this.puntuacion = puntuacion;
 		this.titulo = titulo;
 		this.texto = texto;
 		this.verificada = verificada;
-		this.comentario = comentario;
 	}
 	
 	public EntradaGenerica(EntradaGenerica entradaGenerica) {
@@ -37,7 +39,6 @@ public class EntradaGenerica{
 		this.titulo = entradaGenerica.titulo;
 		this.texto = entradaGenerica.texto;
 		this.verificada = entradaGenerica.verificada;
-		this.comentario = entradaGenerica.comentario;
 	}
 
 	public int getPuntuacion() {
@@ -45,8 +46,11 @@ public class EntradaGenerica{
 	}
 
 	public boolean votar(int puntuacion) {
-		this.puntuacion = puntuacion;
-		return (this.puntuacion != 0) ? true : false;
+		if(this.verificada) {
+			this.puntuacion += puntuacion;
+			return true;
+		}
+		return false;
 	}
 
 	public String getTitulo() {
@@ -70,16 +74,33 @@ public class EntradaGenerica{
 	}
 
 	public void verificar(boolean verificada) {
-		this.verificada = verificada;
+		if(!this.verificada)
+			this.verificada = verificada;
 	}
 
-	public Comentario getComentario() {
-		return comentario;
+	public boolean comentar(String comentario) {
+		if(this.verificada) {
+			Comentario comentarioaux = new Comentario(comentario);
+			this.comentarios.add(comentarioaux);
+			return true;
+		}
+		return false;
 	}
 
-	public boolean comentar(Comentario comentario) {
-		this.comentario = comentario;
-		return (this.comentario != null) ? true : false;
+	public List<Comentario> getComentarios() {
+		return comentarios;
+	}
+
+	public void setComentarios(List<Comentario> comentarios) {
+		this.comentarios = comentarios;
+	}
+	
+	public HashMap<String, Usuario> getVotantes() {
+		return votantes;
+	}
+
+	public void setVotantes(HashMap<String, Usuario> votantes) {
+		this.votantes = votantes;
 	}
 
 }

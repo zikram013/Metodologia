@@ -7,6 +7,7 @@ import modelo.Profesor;
 import modelo.Usuario;
 import controlador.SubForo;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Scanner;
 
@@ -15,9 +16,6 @@ public class Controlador {
     HashMap<String, Usuario> usuarios = new HashMap<>();
     HashMap<String, SubForo> subforos = new HashMap<>();
     Usuario sesion = null;
-    public static final String ANSI_GREEN = "\u001B[32m";
-    public static final String ANSI_RED = "\u001B[31m";
-    public static final String ANSI_RESET = "\u001B[0m";
     
     public HashMap<String, SubForo> getSubforos() {
     	return this.subforos;
@@ -55,8 +53,10 @@ public class Controlador {
             if(usuarios.containsKey(usuario.getNick())&&(usuarios.get(usuario.getNick()).getContraseña().equals(usuario.getContraseña()))) {
             	System.out.println("Acabas de iniciar sesión como: " + usuarios.get(usuario.getNick()).getNick());
             	sesion = usuarios.get(usuario.getNick());
-            	if(sesion.getNotificaciones().size()>0)
-            		this.mostrarNotificaciones();
+            	if(sesion.getNotificaciones().size()>0) {
+            		System.out.println(this.mostrarNotificaciones());
+            	}
+            	this.usuarios.get(usuario.getNick()).setNotificaciones(new ArrayList<String>());
             	return true;
             }
             else if(usuarios.containsKey(usuario.getNick())&&(!usuarios.get(usuario.getNick()).getContraseña().equals(usuario.getContraseña()))) {
@@ -88,15 +88,15 @@ public class Controlador {
 	            return true;
 	        }
 	        else if(this.getUsuarios().containsKey(usuario.getNick())){
-	        	System.err.println("Este usuario ya se encuentra registrado");
+	        	System.out.println("Este usuario ya se encuentra registrado");
 	        	return false;
 	        }      
 	        else{
-	        	System.err.println("El email no coincide con los parámetros del registro.");
+	        	System.out.println("El email no coincide con los parámetros del registro.");
 	            return false;
 	        }
     	}
-    	System.err.println("No puedes crear un usuario sin cerrar antes la sesión");
+    	System.out.println("No puedes crear un usuario sin cerrar antes la sesión");
     	return false;
     }
     
@@ -118,11 +118,11 @@ public class Controlador {
 		    	return true;
 	        }
 	        else {
-	        	System.err.println("El subforo de '" + subforo.getTitulo() + "' ya existe");
+	        	System.out.println("El subforo de '" + subforo.getTitulo() + "' ya existe");
 	        	return false;
 	        }
     	}
-    	System.err.println("No tienes los permisos para poder crear un subforo");
+    	System.out.println("No tienes los permisos para poder crear un subforo");
     	return false;
     }
     
@@ -144,11 +144,11 @@ public class Controlador {
     		System.out.println(aux.toString());
     	}
     	else {
-    		System.err.println("No puedes editar una entrada que no hayas creado tú.");
+    		System.out.println("No puedes editar una entrada que no hayas creado tú.");
     	}
     }
     
-    public void comentarEntrada(String titulo, String titulo2, Comentario comentario) {
+    public void comentarEntrada(String titulo, String titulo2, String comentario) {
     	if(this.sesion!=null) {
     		if(this.subforos.get(titulo).getEntradas().get(titulo2).getEntradaGenerica().comentar(comentario))
     			System.out.println("Comentario añadido satisfactoriamente");

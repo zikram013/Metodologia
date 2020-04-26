@@ -1,9 +1,6 @@
 package controlador;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
-
 import Interfaces.Asignatura;
 import modelo.Entrada;
 import modelo.Usuario;
