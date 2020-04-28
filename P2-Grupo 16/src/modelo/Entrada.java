@@ -10,6 +10,11 @@ public class Entrada{
 		this.usuario = null;
 	}
 	
+	public Entrada(EntradaGenerica entradaGenerica) {
+		this.entradaGenerica = entradaGenerica;
+		this.usuario = null;
+	}
+	
 	public Entrada(String titulo, String texto, Usuario usuario) {
 		this.entradaGenerica.setTitulo(titulo);
 		this.entradaGenerica.setTitulo(texto);
@@ -44,6 +49,10 @@ public class Entrada{
 	
 	public String toString() {
 		return "Título: " + this.getEntradaGenerica().getTitulo() + "\nTexto: " + this.getEntradaGenerica().getTexto() + "\n";
+	}
+	
+	public boolean comprobarAutor(String nick) {
+		return (this.getUsuario().getNick() == nick) ? true : false;
 	}
 	
 }

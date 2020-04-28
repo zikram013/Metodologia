@@ -9,6 +9,7 @@ import controlador.SubForo;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Scanner;
 
 public class Controlador {
@@ -158,6 +159,15 @@ public class Controlador {
     public String mostrarNotificaciones() {
     	System.out.println("Tienes las siguientes notificaciones: \n");
     	return this.sesion.toStringNotificacion();
+    }
+    
+    public List<Entrada> entradasMasVotadas() {
+    	List<Entrada> masvotadas = new ArrayList<>();
+    	for (String subforo: subforos.keySet()){
+    		if(subforos.get(subforo).entradaMasVotada().getEntradaGenerica().getPuntuacion()!=0)
+    			masvotadas.add(subforos.get(subforo).entradaMasVotada());
+    	}
+    	return masvotadas;
     }
     
 }

@@ -41,8 +41,22 @@ public class Comentario {
 		return (puntuacion != 0) ? true : false;
 	}
 	
-	public void comentar(Comentario texto) {
-		this.comentarios.add(texto);
+	public List<Comentario> getComentarios() {
+		return comentarios;
+	}
+
+	public void setComentarios(List<Comentario> comentarios) {
+		this.comentarios = comentarios;
+	}
+
+	public void comentar(String texto) {
+		Comentario auxcomentario = new Comentario(texto);
+		this.comentarios.add(auxcomentario);
+		System.out.println("Replica añadida.");
+	}
+	
+	public String toString() {
+		return "Texto: " + this.texto + ". Puntuacion: " + this.puntuacion;	
 	}
 	
 }

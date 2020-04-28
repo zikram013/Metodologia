@@ -1,7 +1,9 @@
+import java.util.ArrayList;
+import java.util.List;
+
 import controlador.Controlador;
 import controlador.SubForo;
 import modelo.Admin;
-import modelo.Ejercicio;
 import modelo.Entrada;
 import modelo.EntradaGenerica;
 import modelo.Estudiante;
@@ -33,17 +35,30 @@ public class Main {
         
         System.out.println();
         
+        /*Pruebas con el primer usuario con 'Rol'='estudiante'*/
         controlador.iniciarSession(usuario);
         
-        /*Pruebas con el primer usuario con 'Rol'='estudiante'*/
+        /*Mostramos la entrada mas votada de cada subforo*/
+        List<Entrada> entradas = new ArrayList<Entrada>();
+        entradas = controlador.entradasMasVotadas();
+        if(entradas.size()!=0) {
+        	System.out.println("Las entradas más votadas son:\n");
+	        for(int i = 0; i < entradas.size(); i++)
+	        	entradas.get(i).toString();
+        }
+        else
+        	System.out.println("No hay entradas votadas.");
         
-        controlador.registrarUsuario(ejemplo);
+        /*Intentamos crear un usuario sin cerrar la sesión*/
+        controlador.registrarUsuario(ejemplo); 
+        
+        /*Intentamos crear un subforo con una sesion de tipo 'estudiante'*/
         controlador.CrearSubforo(sub);
         
+        /*Nos suscribimos al subforo de 'MP'*/
         if(controlador.getUsuarioConectado()!=null) {
 	        if(controlador.getSubforos().containsKey("MP") && controlador.getUsuarios().get(controlador.getUsuarioConectado().getNick()).getRol().equals("estudiante")) {
 	        	controlador.getSubforos().get("MP").añadirSubscritor(controlador.getUsuarioConectado());
-	        	System.out.println("Te has suscrito satisfactoriamente al subforo de: '" + controlador.getSubforos().get("MP").getTitulo() + "'");
 	        }
 	        else if(!controlador.getSubforos().containsKey("MP"))
 	        	System.out.println("Este subforo no existe");
@@ -51,14 +66,17 @@ public class Main {
 	        	System.out.println("No puedes suscribirte al no ser una sesión de tipo 'estudiante'");
         }
         
+        /*Creamos una nueva entrada*/
         Entrada entrada = new TextoPlano(new EntradaGenerica("AYUDA", "Vamos a aprobar MP"), controlador.getUsuarioConectado());
         controlador.crearEntrada("MP", entrada);
+        
+        /*Editamos la entrada*/
         controlador.editarEntrada("MP", entrada, "SIII", "Parece que funciona");
         controlador.Logout(); 
         System.out.println();
-        controlador.iniciarSession(usuario1);
         
         /*Pruebas con el primer usuario con 'Rol'='profesor'*/
+        controlador.iniciarSession(usuario1);
         
         controlador.registrarUsuario(ejemplo);        
         controlador.CrearSubforo(newsub);
@@ -66,7 +84,6 @@ public class Main {
         if(controlador.getUsuarioConectado()!=null) {
 	        if(controlador.getSubforos().containsKey("MP")&&controlador.getUsuarios().get(controlador.getUsuarioConectado().getNick()).getRol().equals("estudiante")) {
 	        	controlador.getSubforos().get("MP").añadirSubscritor(controlador.getUsuarioConectado());
-	        	System.out.println("Te has suscrito satisfactoriamente al subforo de: '" + controlador.getSubforos().get("MP").getTitulo() + "'");
 	        }
 	        else if(!controlador.getSubforos().containsKey("MP"))
 	        	System.out.println("Este subforo no existe");
@@ -87,13 +104,16 @@ public class Main {
         if(controlador.getUsuarioConectado()!=null) {
 	        if(controlador.getSubforos().containsKey("MP")&&controlador.getUsuarios().get(controlador.getUsuarioConectado().getNick()).getRol().equals("estudiante")) {
 	        	controlador.getSubforos().get("MP").añadirSubscritor(controlador.getUsuarioConectado());
-	        	System.out.println("Te has suscrito satisfactoriamente al subforo de: '" + controlador.getSubforos().get("MP").getTitulo() + "'");
 	        }
 	        else if(!controlador.getSubforos().containsKey("MP"))
 	        	System.out.println("Este subforo no existe");
 	        else
 	        	System.out.println("No puedes suscribirte al no ser una sesión de tipo 'estudiante'");
         }
+        
+        /*Mostramos las entradas del subforo de MP, pero al no haber verificado la que creamos en un principio
+        no nos muestra ninguna*/
+        System.out.println(controlador.getSubforos().get("MP").toStringEntradas());
         
         controlador.Logout();
         System.out.println();
@@ -129,12 +149,70 @@ public class Main {
         controlador.Logout();
         System.out.println();
         controlador.iniciarSession(usuario);
+        System.out.println(controlador.getSubforos().get("MP").toStringEntradas());
+        System.out.println();
         
-        if(controlador.getUsuarioConectado()!=null && controlador.getSubforos().get("MP").getEntradas().get("SIII").getEntradaGenerica().votar(1)) {
-        	System.out.println("Has votado la entrada correctamente.");
+        if(controlador.getUsuarioConectado()!=null && !controlador.getSubforos().get("MP").getEntradas().get("SIII").comprobarAutor(controlador.getUsuarioConectado().getNick())) {
+        	if(controlador.getUsuarioConectado()!=null && !controlador.getSubforos().get("MP").getEntradas().get("SIII").comprobarAutor(controlador.getUsuarioConectado().getNick()) && controlador.getSubforos().get("MP").getEntradas().get("SIII").getEntradaGenerica().votar(1,controlador.getUsuarioConectado())) {
+            	System.out.println("Has votado la entrada correctamente.");
+            }
+            else
+            	System.out.println("No puedes puntuar una entrada que no ha sido verificada.");
+        }
+        else {
+        	System.out.println("No puedes puntuar tu propia entrada.");
+        }
+        
+        controlador.getSubforos().get("MP").getEntradas().get("SIII").getEntradaGenerica().getComentarios().get(0).comentar("No estoy de acuerdo con lo que dices");
+        
+        if(controlador.getUsuarioConectado()!=null && controlador.getSubforos().get("MP").getEntradas().get("SIII").getEntradaGenerica().getComentarios().get(0).votar(-1)) {
+        	System.out.println("Has votado el comentario correctamente.\n");
         }
         else
-        	System.out.println("No puedes puntuar una entrada que no ha sido verificada.");
+        	System.out.println("No puedes votar una entrada que no ha sido verificada.\n");
+        System.out.println(controlador.getSubforos().get("MP").toStringEntradas());
+        
+        System.out.println();
+        controlador.Logout();
+        System.out.println();
+        
+        controlador.iniciarSession(ejemplo);
+        
+        if(controlador.getUsuarioConectado()!=null && !controlador.getSubforos().get("MP").getEntradas().get("SIII").comprobarAutor(controlador.getUsuarioConectado().getNick())) {
+        	if(controlador.getUsuarioConectado()!=null && !controlador.getSubforos().get("MP").getEntradas().get("SIII").comprobarAutor(controlador.getUsuarioConectado().getNick()) && controlador.getSubforos().get("MP").getEntradas().get("SIII").getEntradaGenerica().votar(1,controlador.getUsuarioConectado())) {
+            	System.out.println("Has votado la entrada correctamente.");
+            }
+            else
+            	System.out.println("No puedes puntuar una entrada que no ha sido verificada.");
+        }
+        else {
+        	System.out.println("No puedes puntuar tu propia entrada.");
+        }
+        
+        entradas = controlador.entradasMasVotadas();
+        if(entradas.size()!=0) {
+        	System.out.println("Las entradas más votadas son:\n");
+	        for(int i = 0; i < entradas.size(); i++) {
+	        	System.out.print(entradas.get(i).toString());
+	        	System.out.println("Puntuación: " + entradas.get(i).getEntradaGenerica().getPuntuacion() + "\n");
+	        }
+        }
+        else
+        	System.out.println("No hay entradas votadas.");
+        
+        controlador.Logout();
+        System.out.println();
+        controlador.iniciarSession(usuario);
+        
+        if(controlador.getUsuarioConectado()!=null) {
+	        if(controlador.getSubforos().containsKey("MP") && controlador.getUsuarios().get(controlador.getUsuarioConectado().getNick()).getRol().equals("estudiante")) {
+	        	controlador.getSubforos().get("MP").eliminarSubscritor(controlador.getUsuarioConectado());
+	        }
+	        else if(!controlador.getSubforos().containsKey("MP"))
+	        	System.out.println("Este subforo no existe");
+	        else
+	        	System.out.println("No puedes desuscribirte al no ser una sesión de tipo 'estudiante'");
+        }
 
     }
 }
