@@ -1,13 +1,7 @@
-package controlador;
+package modelo;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
-
 import Interfaces.Asignatura;
-import modelo.Entrada;
-import modelo.EntradaGenerica;
-import modelo.Usuario;
 
 public class SubForo implements Asignatura{
 	

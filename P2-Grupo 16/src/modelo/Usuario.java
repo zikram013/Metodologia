@@ -16,7 +16,6 @@ public class Usuario implements Suscriptor{
     protected String rol;
 
     public Usuario() {
-
     }
 
     public Usuario(String nombre, String apellidos, String nick, String email, String contraseña, String rol) {

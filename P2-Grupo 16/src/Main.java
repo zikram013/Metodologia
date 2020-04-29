@@ -2,12 +2,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import controlador.Controlador;
-import controlador.SubForo;
 import modelo.Admin;
 import modelo.Entrada;
 import modelo.EntradaGenerica;
 import modelo.Estudiante;
 import modelo.Profesor;
+import modelo.SubForo;
 import modelo.TextoPlano;
 
 public class Main {

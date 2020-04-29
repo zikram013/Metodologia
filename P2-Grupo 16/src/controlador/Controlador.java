@@ -1,16 +1,12 @@
 package controlador;
 
-import modelo.Comentario;
 import modelo.Entrada;
 import modelo.Estudiante;
-import modelo.Profesor;
+import modelo.SubForo;
 import modelo.Usuario;
-import controlador.SubForo;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Scanner;
 
 public class Controlador {
 

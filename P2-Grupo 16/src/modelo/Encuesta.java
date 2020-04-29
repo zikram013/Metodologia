@@ -17,4 +17,12 @@ public class Encuesta extends Entrada{
 		this.respuestas = new ArrayList<String>(respuestas);
 	}
 
+	public List<String> getRespuestas() {
+		return respuestas;
+	}
+
+	public void setRespuestas(List<String> respuestas) {
+		this.respuestas = respuestas;
+	}
+
 }

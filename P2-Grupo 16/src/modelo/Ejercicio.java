@@ -14,4 +14,13 @@ public class Ejercicio extends Entrada{
 		this.solucion = solucion;
 	}
 
+	public String getSolucion() {
+		return solucion;
+	}
+
+	public void setSolucion(String solucion) {
+		this.solucion = solucion;
+	}
+	
+
 }
