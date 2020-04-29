@@ -1,6 +1,5 @@
 import java.util.ArrayList;
 import java.util.List;
-
 import controlador.Controlador;
 import modelo.Admin;
 import modelo.Entrada;
@@ -77,9 +76,12 @@ public class Main {
         /*Pruebas con el primer usuario con 'Rol'='profesor'*/
         controlador.iniciarSession(usuario1);
         
-        controlador.registrarUsuario(ejemplo);        
+        controlador.registrarUsuario(ejemplo);     
+        
+        /*Creamos un nuevo subforo*/
         controlador.CrearSubforo(newsub);
         
+        /*Intentamos suscribirnos a un subforo siendo un profesor*/
         if(controlador.getUsuarioConectado()!=null) {
 	        if(controlador.getSubforos().containsKey("MP")&&controlador.getUsuarios().get(controlador.getUsuarioConectado().getNick()).getRol().equals("estudiante")) {
 	        	controlador.getSubforos().get("MP").añadirSubscritor(controlador.getUsuarioConectado());
@@ -90,14 +92,16 @@ public class Main {
 	        	System.out.println("No puedes suscribirte al no ser una sesión de tipo 'estudiante'");
         }
         
+        /*Intentamos editar una entrada que no hemos creado*/
         controlador.editarEntrada("MP", entrada, "SUUU", "He editado una entrada que no es mia.");
         controlador.Logout();     
         System.out.println();
         
         /*Pruebas con un usuario nuevo*/
-        
         controlador.registrarUsuario(ejemplo);
         controlador.iniciarSession(ejemplo);
+        
+        /*Intentamos crear un subforo que ya existe*/
         controlador.CrearSubforo(newsub);
         
         if(controlador.getUsuarioConectado()!=null) {
@@ -118,6 +122,7 @@ public class Main {
         System.out.println();
         controlador.iniciarSession(usuario1);
         
+        /*Intentamos comentar una entrada que aun no ha sido verificada*/
         if(controlador.getUsuarioConectado()!=null && controlador.getSubforos().get("MP").getEntradas().get("SIII").getEntradaGenerica().comentar("Me parece buena la idea")) {
         	System.out.println("Has comentado la entrada correctamente.");
         }
@@ -128,6 +133,8 @@ public class Main {
         System.out.println();
         controlador.iniciarSession(usuario2);
         boolean verificar = true;
+        
+        /*Verificamos la entrada que habiamos creado*/
         controlador.getSubforos().get("MP").getEntradas().get("SIII").getEntradaGenerica().verificar(verificar);
         if(controlador.getUsuarioConectado()!=null && controlador.getSubforos().get("MP").getEntradas().get("SIII").getEntradaGenerica().isVerificada()) {
         	System.out.println("Has verificado la entrada satisfactoriamente");
@@ -139,6 +146,7 @@ public class Main {
         System.out.println();
         controlador.iniciarSession(usuario1);
         
+        /*Comentamos la entrada que ya ha sido verificada*/
         if(controlador.getUsuarioConectado()!=null && controlador.getSubforos().get("MP").getEntradas().get("SIII").getEntradaGenerica().comentar("Me parece buena la idea")) {
         	System.out.println("Has comentado la entrada correctamente.");
         }
@@ -147,10 +155,15 @@ public class Main {
         
         controlador.Logout();
         System.out.println();
+        
+        /*Recibimos una notificacion de la entrada que creamos, como antes no la verificamos, no se envio ninguna notificacion*/
         controlador.iniciarSession(usuario);
+        
+        /*Mostramos las entradas del subforo de MP*/
         System.out.println(controlador.getSubforos().get("MP").toStringEntradas());
         System.out.println();
         
+        /*Intentamos votar nuestra propia entrada*/
         if(controlador.getUsuarioConectado()!=null && !controlador.getSubforos().get("MP").getEntradas().get("SIII").comprobarAutor(controlador.getUsuarioConectado().getNick())) {
         	if(controlador.getUsuarioConectado()!=null && !controlador.getSubforos().get("MP").getEntradas().get("SIII").comprobarAutor(controlador.getUsuarioConectado().getNick()) && controlador.getSubforos().get("MP").getEntradas().get("SIII").getEntradaGenerica().votar(1,controlador.getUsuarioConectado())) {
             	System.out.println("Has votado la entrada correctamente.");
@@ -162,13 +175,17 @@ public class Main {
         	System.out.println("No puedes puntuar tu propia entrada.");
         }
         
+        /*Añadimos un comentario a un comentario de la entrada*/
         controlador.getSubforos().get("MP").getEntradas().get("SIII").getEntradaGenerica().getComentarios().get(0).comentar("No estoy de acuerdo con lo que dices");
         
+        /*Votamos el comentario de la entrada*/
         if(controlador.getUsuarioConectado()!=null && controlador.getSubforos().get("MP").getEntradas().get("SIII").getEntradaGenerica().getComentarios().get(0).votar(-1)) {
         	System.out.println("Has votado el comentario correctamente.\n");
         }
         else
         	System.out.println("No puedes votar una entrada que no ha sido verificada.\n");
+        
+        /*Mostramos otra vez las entradas del subforo con los datos actualizados*/
         System.out.println(controlador.getSubforos().get("MP").toStringEntradas());
         
         System.out.println();
@@ -177,6 +194,7 @@ public class Main {
         
         controlador.iniciarSession(ejemplo);
         
+        /*Votamos la entrada del subforo con un usuario distinto*/
         if(controlador.getUsuarioConectado()!=null && !controlador.getSubforos().get("MP").getEntradas().get("SIII").comprobarAutor(controlador.getUsuarioConectado().getNick())) {
         	if(controlador.getUsuarioConectado()!=null && !controlador.getSubforos().get("MP").getEntradas().get("SIII").comprobarAutor(controlador.getUsuarioConectado().getNick()) && controlador.getSubforos().get("MP").getEntradas().get("SIII").getEntradaGenerica().votar(1,controlador.getUsuarioConectado())) {
             	System.out.println("Has votado la entrada correctamente.");
@@ -188,6 +206,8 @@ public class Main {
         	System.out.println("No puedes puntuar tu propia entrada.");
         }
         
+        /*Mostramos la entrada mas votada de cada subforo, antes no habia ninguna, pero al haber puntuado el subforo
+         * de MP, ahora se muestra la entrada*/
         entradas = controlador.entradasMasVotadas();
         if(entradas.size()!=0) {
         	System.out.println("Las entradas más votadas son:\n");
@@ -203,6 +223,7 @@ public class Main {
         System.out.println();
         controlador.iniciarSession(usuario);
         
+        /*Nos desuscribimos de un subforo al que estamos suscritos*/
         if(controlador.getUsuarioConectado()!=null) {
 	        if(controlador.getSubforos().containsKey("MP") && controlador.getUsuarios().get(controlador.getUsuarioConectado().getNick()).getRol().equals("estudiante")) {
 	        	controlador.getSubforos().get("MP").eliminarSubscritor(controlador.getUsuarioConectado());
@@ -216,6 +237,8 @@ public class Main {
         controlador.Logout();
         System.out.println();
         controlador.iniciarSession(usuario2);
+        
+        /*Penalizacion a un usuario*/
         if(controlador.getUsuarioConectado().getRol().equals("admin"))
         	controlador.penalizar("el chino");
         else
@@ -228,16 +251,22 @@ public class Main {
         
         controlador.Logout();
         System.out.println();
+        
+        /*Intentamos iniciar sesion con un usuario que esta penalizado*/
         controlador.iniciarSession(usuario);
 
         System.out.println();
         controlador.iniciarSession(usuario2);
+        
+        /*Modificamos la penalizacion de un usuario penalizado*/
         if(controlador.getUsuarioConectado().getRol().equals("admin"))
         	controlador.modificarPenalizacion("el chino", 4);
         else
         	System.out.println("No puedes penalizar sin ser administrador.");
         
         System.out.println();
+        
+        /*Inicio de sesion despues de cambiar la penalizacion*/
         controlador.iniciarSession(usuario);
         controlador.Logout();
 
