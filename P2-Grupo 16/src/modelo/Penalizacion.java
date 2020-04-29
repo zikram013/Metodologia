@@ -1,23 +1,45 @@
 package modelo;
 
-import java.util.Date;
-
 public class Penalizacion {
+
+	private boolean activa;
+	private int diasPenalizacion;
 	
-	Date fechaInicio;
-	Date fechaFin;
+	public Penalizacion(int dias) {
+		diasPenalizacion = dias;
+		activa = true;
+	}
 	
-	public Date getFechaInicio() {
-		return fechaInicio;
+	public boolean estaActiva() {
+		return activa;
 	}
-	public void setFechaInicio(Date fechaInicio) {
-		this.fechaInicio = fechaInicio;
+	
+	public void avanzarDias(int dias) {
+		diasPenalizacion -= dias;
+		if(diasPenalizacion <= 0) {
+			diasPenalizacion = 0;
+			activa = false;
+		}
 	}
-	public Date getFechaFin() {
-		return fechaFin;
+	
+	public void extenderPenalizacion() {
+		this.diasPenalizacion += 2;
 	}
-	public void setFechaFin(Date fechaFin) {
-		this.fechaFin = fechaFin;
-	}	
+
+	public boolean isActiva() {
+		return activa;
+	}
+
+	public void setActiva(boolean activa) {
+		this.activa = activa;
+	}
+
+	public int getDiasPenalizacion() {
+		return diasPenalizacion;
+	}
+
+	public void setDiasPenalizacion(int diasPenalizacion) {
+		this.diasPenalizacion = diasPenalizacion;
+	}
 
 }

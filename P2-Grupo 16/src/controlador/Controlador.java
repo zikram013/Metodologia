@@ -50,8 +50,18 @@ public class Controlador {
     }
 
     public boolean iniciarSession(Usuario usuario){
+    	Estudiante usuarioaux = new Estudiante();
         try{
             if(usuarios.containsKey(usuario.getNick())&&(usuarios.get(usuario.getNick()).getContraseña().equals(usuario.getContraseña()))) {
+            	if(usuario.getRol().equals("estudiante")) {
+            		usuarioaux = (Estudiante) usuario;
+            		if(usuarioaux.getPenalizacion()!=null)
+	            		if(usuarioaux.getPenalizacion().isActiva()) {
+	            			System.out.println("No puedes iniciar sesion como '" + usuario.getNick() + "'. Actualmente tienes una penalizaciín de " 
+	            					+ usuarioaux.getPenalizacion().getDiasPenalizacion() + " días.");
+	            			return false;
+	            		}
+            	}
             	System.out.println("Acabas de iniciar sesión como: " + usuarios.get(usuario.getNick()).getNick());
             	sesion = usuarios.get(usuario.getNick());
             	if(sesion.getNotificaciones().size()>0) {
@@ -168,6 +178,37 @@ public class Controlador {
     			masvotadas.add(subforos.get(subforo).entradaMasVotada());
     	}
     	return masvotadas;
+    }
+    
+    public void penalizar(String nombre) {
+    	if(this.usuarios.containsKey(nombre)) {
+	    	Estudiante usuarioaux = new Estudiante();
+	    	usuarioaux = (Estudiante) this.getUsuarios().get(nombre);
+	    	this.getUsuarios().remove(nombre);
+	    	usuarioaux.penalizar();
+	    	this.usuarios.put(usuarioaux.getNick(), usuarioaux);
+	    	System.out.println("Usuario '" + nombre + "' penalizado durante 2 días.\n'" + nombre +
+	    						"' se encuentra penalizado durante " + usuarioaux.getPenalizacion().getDiasPenalizacion()
+	    						+ " días.");
+    	}
+    	else
+    		System.out.println("Este usuario no existe.");
+    		
+    }
+    
+    public void modificarPenalizacion(String nombre, int dias) {
+    	if(this.usuarios.containsKey(nombre)) {
+	    	Estudiante usuarioaux = new Estudiante();
+	    	usuarioaux = (Estudiante) this.getUsuarios().get(nombre);
+	    	this.getUsuarios().remove(nombre);
+	    	usuarioaux.getPenalizacion().avanzarDias(dias);
+	    	this.usuarios.put(usuarioaux.getNick(), usuarioaux);
+	    	System.out.println("Usuario '" + nombre + "' se le ha restado " + dias + " días a su penalización.\n'" + nombre +
+	    						"' se encuentra penalizado durante " + usuarioaux.getPenalizacion().getDiasPenalizacion()
+	    						+ " días.");
+    	}
+    	else
+    		System.out.println("Este usuario no existe.");
     }
     
 }

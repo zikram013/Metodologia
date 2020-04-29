@@ -1,29 +1,14 @@
 package modelo;
 
-import controlador.Controlador;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
-
-
 public class Estudiante extends Usuario {
 
-    private boolean penalizacion;
+    private Penalizacion penalizacion = null;
 
     public Estudiante() {
     }
 
     public Estudiante(String nombre, String apellidos, String nick, String email, String contraseña, String rol) {
         super(nombre, apellidos, nick, email, contraseña, rol);
-    }
-
-    public boolean estaPenalizado() {
-        return penalizacion;
-    }
-
-    public void penalizar(boolean penalizacion) {
-        this.penalizacion = penalizacion;
     }
 
     @Override
@@ -37,4 +22,24 @@ public class Estudiante extends Usuario {
                 ", contraseña='" + contraseña + '\'' +
                 '}';
     }
+    
+    public void penalizar() {
+    	if(this.penalizacion!=null)
+    		this.penalizacion.extenderPenalizacion();
+    	else
+    		this.penalizacion = new Penalizacion(2);
+    }
+    
+    public boolean estaPenalizado() {
+    	return this.penalizacion.estaActiva();
+    }
+
+	public Penalizacion getPenalizacion() {
+		return penalizacion;
+	}
+
+	public void setPenalizacion(Penalizacion penalizacion) {
+		this.penalizacion = penalizacion;
+	}
+    
 }

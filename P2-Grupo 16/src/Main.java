@@ -9,18 +9,17 @@ import modelo.EntradaGenerica;
 import modelo.Estudiante;
 import modelo.Profesor;
 import modelo.TextoPlano;
-import modelo.Usuario;
 
 public class Main {
 
     public static  Controlador controlador = new Controlador();
     public static void main (String[] arg){
 
-        Usuario usuario = new Estudiante("Angel", "Chino", "el chino", "angel@urjc.es", "chino","estudiante");
-        Usuario usuario1 = new Estudiante("Ramon", "Barrabes", "ramon1", "ramon@urjc.es", "1234","profesor");
-        Usuario usuario2 = new Admin("David", "Amor", "almendra", "almendra@urjc.es", "nose","admin");
-        Usuario ejemplo = new Profesor("Antonio", "Gonzalez", "el profe nuevo", "antonio.gpardo@urjc.es", "1234","profesor");
-        Usuario ejemplo2 = new Profesor("Gustavo", "Cebrian", "altoke", "gustavo.cebrian@urjc.es", "1234","profesor");
+        Estudiante usuario = new Estudiante("Angel", "Chino", "el chino", "angel@urjc.es", "chino","estudiante");
+        Estudiante usuario1 = new Estudiante("Ramon", "Barrabes", "ramon1", "ramon@urjc.es", "1234","profesor");
+        Admin usuario2 = new Admin("David", "Amor", "almendra", "almendra@urjc.es", "nose","admin");
+        Profesor ejemplo = new Profesor("Antonio", "Gonzalez", "el profe nuevo", "antonio.gpardo@urjc.es", "1234","profesor");
+        Profesor ejemplo2 = new Profesor("Gustavo", "Cebrian", "altoke", "gustavo.cebrian@urjc.es", "1234","profesor");
         SubForo sub = new SubForo("MP");
         SubForo newsub = new SubForo("DAW");
 
@@ -213,6 +212,34 @@ public class Main {
 	        else
 	        	System.out.println("No puedes desuscribirte al no ser una sesión de tipo 'estudiante'");
         }
+        
+        controlador.Logout();
+        System.out.println();
+        controlador.iniciarSession(usuario2);
+        if(controlador.getUsuarioConectado().getRol().equals("admin"))
+        	controlador.penalizar("el chino");
+        else
+        	System.out.println("No puedes penalizar sin ser administrador.");
+        
+        if(controlador.getUsuarioConectado().getRol().equals("admin"))
+        	controlador.penalizar("el chino");
+        else
+        	System.out.println("No puedes penalizar sin ser administrador.");
+        
+        controlador.Logout();
+        System.out.println();
+        controlador.iniciarSession(usuario);
+
+        System.out.println();
+        controlador.iniciarSession(usuario2);
+        if(controlador.getUsuarioConectado().getRol().equals("admin"))
+        	controlador.modificarPenalizacion("el chino", 4);
+        else
+        	System.out.println("No puedes penalizar sin ser administrador.");
+        
+        System.out.println();
+        controlador.iniciarSession(usuario);
+        controlador.Logout();
 
     }
 }
