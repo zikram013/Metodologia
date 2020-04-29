@@ -2,8 +2,6 @@ package modelo;
 
 public class Admin extends Usuario {
 
-    public String rol;
-
     public Admin() {
     }
 

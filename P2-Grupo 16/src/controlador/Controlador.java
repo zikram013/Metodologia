@@ -1,7 +1,9 @@
 package controlador;
 
+import modelo.Admin;
 import modelo.Entrada;
 import modelo.Estudiante;
+import modelo.Profesor;
 import modelo.SubForo;
 import modelo.Usuario;
 import java.util.ArrayList;
@@ -86,12 +88,22 @@ public class Controlador {
 	        String[] parts = usuario.getEmail().split("@");
 	        String part2 = parts[1];
 	        if(part2.equals("urjc.es")){
-	            usuarios.put(usuario.getNick(), usuario);
-	            System.out.println("Usuario '" + usuario.getNick() + "' registrado correctamente");
+	        	Profesor profesor = new Profesor();
+	        	profesor = (Profesor) usuario;
+	            usuarios.put(profesor.getNick(), profesor);
+	            System.out.println("Usuario '" + profesor.getNick() + "' registrado correctamente");
 	            return true;
 	        }else if(part2.equals("alumnos.urjc.es")){
-	            usuarios.put(usuario.getNick(), usuario);
-	            System.out.println("Usuario '" + usuario.getNick() + "' registrado correctamente");
+	        	Estudiante estudiante = new Estudiante();
+	        	estudiante = (Estudiante) usuario;
+	            usuarios.put(estudiante.getNick(), estudiante);
+	            System.out.println("Usuario '" + estudiante.getNick() + "' registrado correctamente");
+	            return true;
+	    	}else if(part2.equals("admin.urjc.es")){
+	        	Usuario admin = new Admin();
+	        	admin = (Admin) usuario;
+	            usuarios.put(admin.getNick(), admin);
+	            System.out.println("Usuario '" + admin.getNick() + "' registrado correctamente");
 	            return true;
 	        }
 	        else if(this.getUsuarios().containsKey(usuario.getNick())){
