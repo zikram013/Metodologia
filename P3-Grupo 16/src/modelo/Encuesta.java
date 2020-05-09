@@ -11,6 +11,11 @@ public class Encuesta extends Entrada{
 		super();
 		this.respuestas = new ArrayList<String>();
 	}
+        
+        public Encuesta(List<String> respuestas) {
+		super();
+		this.respuestas = new ArrayList<String>(respuestas);
+	}
 	
 	public Encuesta(EntradaGenerica entradaGenerica, List<String> respuestas, Usuario usuario) {
 		super(entradaGenerica, usuario);
@@ -22,7 +27,7 @@ public class Encuesta extends Entrada{
 	}
 
 	public void setRespuestas(List<String> respuestas) {
-		this.respuestas = respuestas;
+		this.respuestas = new ArrayList<String>(respuestas);
 	}
 
 }

@@ -16,7 +16,10 @@ import org.junit.runners.Suite.SuiteClasses;
 @SuiteClasses({PenalizacionTest.class,
                ProfesorTest.class,
                AdminTest.class,
-               EstudianteTest.class})
+               EstudianteTest.class,
+               TextoPlanoTest.class,
+               EjercicioTest.class,
+               EncuestaTest.class})
 public class AllTest {
     
 }

@@ -30,6 +30,5 @@ public class AdminTest {
                 + ", contrasenna='1234'\n"
                 + "}";
         assertEquals(cadena, ejemplo.toString());
-    }
-    
+    }  
 }
