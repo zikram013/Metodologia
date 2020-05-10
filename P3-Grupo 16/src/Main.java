@@ -180,7 +180,7 @@ public class Main {
         controlador.getSubforos().get("MP").getEntradas().get("SIII").getEntradaGenerica().getComentarios().get(0).comentar("No estoy de acuerdo con lo que dices");
         
         /*Votamos el comentario de la entrada*/
-        if(controlador.getUsuarioConectado()!=null && controlador.getSubforos().get("MP").getEntradas().get("SIII").getEntradaGenerica().getComentarios().get(0).votar(-1)) {
+        if(controlador.getUsuarioConectado()!=null && controlador.getSubforos().get("MP").getEntradas().get("SIII").getEntradaGenerica().getComentarios().get(0).votar(-1, controlador.getUsuarioConectado())) {
         	System.out.println("Has votado el comentario correctamente.\n");
         }
         else

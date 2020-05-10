@@ -48,7 +48,7 @@ public class SubForo implements Asignatura{
 	@Override
 	public void notificar() {
 		for (String nick: suscritos.keySet()){
-			this.suscritos.get(nick).getNotificaciones().add("Nueva entrada en el foro: '" + this.getTitulo() + "'.\n");
+			this.suscritos.get(nick).recibirNotificacion("Nueva entrada en el foro: '" + this.getTitulo() + "'.\n");
     	}
 	}	
 	

@@ -19,7 +19,11 @@ import org.junit.runners.Suite.SuiteClasses;
                EstudianteTest.class,
                TextoPlanoTest.class,
                EjercicioTest.class,
-               EncuestaTest.class})
+               EncuestaTest.class,
+               EntradaGenericaTest.class,
+               EntradaTest.class,
+               ComentarioTest.class,
+               UsuarioTest.class})
 public class AllTest {
     
 }

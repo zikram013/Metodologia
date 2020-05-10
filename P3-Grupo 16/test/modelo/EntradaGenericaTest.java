@@ -31,7 +31,7 @@ public class EntradaGenericaTest {
      */
     @Test
     public void testVotar() {
-        int puntuacion = 6;
+        int puntuacion = 1;
         Usuario ejemplo = new Profesor("Antonio", "Gonzalez", "el profe nuevo", "antonio.gpardo@urjc.es", "1234","profesor");
         EntradaGenerica e = new EntradaGenerica();
         e.verificar(true);
@@ -45,7 +45,7 @@ public class EntradaGenericaTest {
      */
     @Test
     public void testVotar2() {
-        int puntuacion = 6;
+        int puntuacion = 1;
         Usuario ejemplo = new Profesor("Antonio", "Gonzalez", "el profe nuevo", "antonio.gpardo@urjc.es", "1234","profesor");
         EntradaGenerica e = new EntradaGenerica();
         assertEquals(false, e.votar(puntuacion, ejemplo));
@@ -54,18 +54,21 @@ public class EntradaGenericaTest {
     /**
      * Test of votar method, of class EntradaGenerica.
      * Case when a user vote an entrie that had alrrady voted.
-     * Solution: assertEquals(6+1,7).
+     * First vote: -1.
+     * Second vote: 1.
+     * Solution: assertEquals(1,1).
      */
     
     @Test
     public void testVotar3() {
-        int puntuacion = 6;
+        int puntuacion = -1;
+        int puntuacion2 = 1;
         Usuario ejemplo = new Profesor("Antonio", "Gonzalez", "el profe nuevo", "antonio.gpardo@urjc.es", "1234","profesor");
         EntradaGenerica e = new EntradaGenerica();
         e.verificar(true);
         e.votar(puntuacion, ejemplo);
-        e.votar(puntuacion+1, ejemplo);
-        assertEquals(puntuacion+1, e.getPuntuacion());
+        e.votar(puntuacion2, ejemplo);
+        assertEquals(puntuacion2, e.getPuntuacion());
     }
 
     /**
@@ -108,6 +111,9 @@ public class EntradaGenericaTest {
      */
     @Test
     public void testVerificar() {
+        EntradaGenerica e = new EntradaGenerica();
+        e.verificar(true);
+        assertEquals(true, e.isVerificada());
     }
 
     /**
@@ -115,6 +121,22 @@ public class EntradaGenericaTest {
      */
     @Test
     public void testComentar() {
+        EntradaGenerica e = new EntradaGenerica();
+        e.verificar(true);
+        String c = "Funciona";
+        e.comentar(c);
+        assertEquals(true, e.comentar(c));
+    }
+    
+    /**
+     * Test of comentar method, of class EntradaGenerica.
+     * Case when an entrie is not ferified. Solution: assertEquals(false,flase).
+     */
+    @Test
+    public void testComentar2() {
+        EntradaGenerica e = new EntradaGenerica();
+        String c = "Funciona";
+        assertEquals(false, e.comentar(c));
     }
 
     /**

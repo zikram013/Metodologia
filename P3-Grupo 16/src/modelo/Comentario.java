@@ -1,6 +1,7 @@
 package modelo;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 public class Comentario {
@@ -8,6 +9,8 @@ public class Comentario {
 	String texto;
 	int puntuacion;
 	private List<Comentario> comentarios = new ArrayList<Comentario>();
+        private HashMap<String, Usuario> votantes = new HashMap<>();
+	private HashMap<String, Integer> votos = new HashMap<>();
 	
 	public Comentario() {
 		this.texto = "";
@@ -36,9 +39,18 @@ public class Comentario {
 		return puntuacion;
 	}
 
-	public boolean votar(int puntuacion) {
-		this.puntuacion += puntuacion;
-		return (puntuacion != 0) ? true : false;
+	public boolean votar(int puntuacion, Usuario usuario) {
+		if(!this.getVotantes().containsKey(usuario.getNick())) {
+			this.puntuacion += puntuacion;
+			this.votantes.put(usuario.getNick(), usuario);
+			this.votos.put(usuario.getNick(), puntuacion);
+			return true;
+		}
+		else if(this.getVotos().get(usuario.getNick())!=puntuacion && this.getVotos().get(usuario.getNick())!=0) {
+			this.puntuacion = puntuacion;
+			return true;
+		}
+		return false;
 	}
 	
 	public List<Comentario> getComentarios() {
@@ -48,6 +60,22 @@ public class Comentario {
 	public void setComentarios(List<Comentario> comentarios) {
 		this.comentarios = comentarios;
 	}
+
+        public HashMap<String, Usuario> getVotantes() {
+            return votantes;
+        }
+
+        public void setVotantes(HashMap<String, Usuario> votantes) {
+            this.votantes = votantes;
+        }
+
+        public HashMap<String, Integer> getVotos() {
+            return votos;
+        }
+
+        public void setVotos(HashMap<String, Integer> votos) {
+            this.votos = votos;
+        }   
 
 	public void comentar(String texto) {
 		Comentario auxcomentario = new Comentario(texto);

@@ -6,8 +6,8 @@ public class Entrada{
 	private Usuario usuario;
 	
 	public Entrada() {
-		this.entradaGenerica = null;
-		this.usuario = null;
+		this.entradaGenerica = new EntradaGenerica();
+		this.usuario = new Usuario();
 	}
 	
 	public Entrada(EntradaGenerica entradaGenerica) {
