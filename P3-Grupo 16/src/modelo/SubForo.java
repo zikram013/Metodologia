@@ -35,15 +35,24 @@ public class SubForo implements Asignatura{
 
 	@Override
 	public void annadirSubscritor(Usuario usuario) {
+            if(!this.suscritos.containsKey(usuario.getNick())){
 		this.suscritos.put(usuario.getNick(), usuario);
 		System.out.println("Te has suscrito al subforo de '" + this.getTitulo() + "' satisfactoriamente.");
+            }
+            else
+                System.out.println("Ya estas suscrito a en este foro");
 	}
 
 	@Override
 	public void eliminarSubscritor(Usuario usuario) {
+            if(this.suscritos.containsKey(usuario.getNick())){
 		this.suscritos.remove(usuario.getNick());
 		System.out.println("Te has desuscrito del subforo de '" + this.getTitulo() + "' satisfactoriamente.");
-	}
+	
+            }
+            else
+                System.out.println("No estabas suscrito en este foro.");
+        }
 
 	@Override
 	public void notificar() {

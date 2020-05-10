@@ -34,7 +34,7 @@ public class Controlador {
     public void listaUsuarios(){
     	System.out.println("Usuarios del sistema: ");
     	for (String nick: usuarios.keySet()){
-    		System.out.print("Nick: " + nick.toString() + ". Contrasenna: " + usuarios.get(nick).getContrasenna() + ". Rol: " + usuarios.get(nick).getRol() + "\n");
+    		System.out.print("Nick: " + nick + ". Contrasenna: " + usuarios.get(nick).getContrasenna() + ". Rol: " + usuarios.get(nick).getRol() + "\n");
     	}
     }
 
@@ -154,7 +154,7 @@ public class Controlador {
     }
     
     public void editarEntrada(String titulo, Entrada entrada, String newTitulo, String newTexto) {
-    	if(this.getUsuarioConectado().getNick()==entrada.getUsuario().getNick() && this.getUsuarioConectado()!=null) {
+    	if(this.getUsuarioConectado().getNick().equals(entrada.getUsuario().getNick()) && this.getUsuarioConectado()!=null) {
     		Entrada aux = entrada;
     		this.subforos.get(titulo).getEntradas().remove(entrada.getEntradaGenerica().getTitulo());
     		aux.editar(newTitulo, newTexto);

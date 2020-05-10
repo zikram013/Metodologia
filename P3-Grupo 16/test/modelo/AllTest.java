@@ -23,7 +23,8 @@ import org.junit.runners.Suite.SuiteClasses;
                EntradaGenericaTest.class,
                EntradaTest.class,
                ComentarioTest.class,
-               UsuarioTest.class})
+               UsuarioTest.class,
+               SubForoTest.class})
 public class AllTest {
     
 }
