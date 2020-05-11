@@ -27,7 +27,7 @@ public class Controlador {
     public void guardarUsuario(Usuario u){
     	if(!usuarios.containsKey(u.getNick())) {
 	        usuarios.put(u.getNick(), u);
-	        System.out.println("El usuario: "+u.getNick() + " ha sido registrado con �xito");
+	        System.out.println("El usuario: "+u.getNick() + " ha sido registrado con exito");
     	}
     }
 
@@ -39,12 +39,14 @@ public class Controlador {
     }
 
     public void borrarUsario(Usuario u){
-        if(u != null){
+        if(u != null && this.getUsuarios().containsKey(u.getNick())){
         	usuarios.remove(u.getNick());
             System.out.println("Usuario eliminadoo");
         }
+        else if(u != null && !this.getUsuarios().containsKey(u.getNick()))
+            System.out.println("El usuario introducido no existe");
         else
-        	System.err.println("El usuario introducido no es correcto");
+        	System.out.println("El usuario introducido no es correcto");
     }
 
     public boolean iniciarSession(Usuario usuario){
@@ -69,12 +71,16 @@ public class Controlador {
             	return true;
             }
             else if(usuarios.containsKey(usuario.getNick())&&(!usuarios.get(usuario.getNick()).getContrasenna().equals(usuario.getContrasenna()))) {
-            	System.err.println("Contrasenna incorrecta");
+            	System.out.println("Contrasenna incorrecta");
             	return false;
             }
-            else {
-                System.err.println("El usuario no se encuentra registrado");
+            else if(!usuarios.containsKey(usuario.getNick())){
+                System.out.println("El usuario no se encuentra registrado");
             	return false;
+            }
+            else{
+                System.err.println("Error del sistema.");
+                return false;
             }
         }catch (Exception e){
             System.err.println("Error en el servidor "+ e.getLocalizedMessage());
@@ -84,7 +90,7 @@ public class Controlador {
     }
 
     public boolean registrarUsuario(Usuario usuario){
-    	if(this.getUsuarioConectado()==null) {
+    	if(this.getUsuarioConectado()==null && !this.getUsuarios().containsKey(usuario.getNick())) {
 	        String[] parts = usuario.getEmail().split("@");
 	        String part2 = parts[1];
 	        if(part2.equals("urjc.es")){
@@ -105,16 +111,16 @@ public class Controlador {
 	            usuarios.put(admin.getNick(), admin);
 	            System.out.println("Usuario '" + admin.getNick() + "' registrado correctamente");
 	            return true;
-	        }
-	        else if(this.getUsuarios().containsKey(usuario.getNick())){
-	        	System.out.println("Este usuario ya se encuentra registrado");
-	        	return false;
-	        }      
+	        }    
 	        else{
 	        	System.out.println("El email no coincide con los parametros del registro.");
 	            return false;
 	        }
     	}
+        else if(this.getUsuarios().containsKey(usuario.getNick()) && this.getUsuarioConectado()!=null){
+	        System.out.println("Este usuario ya se encuentra registrado");
+	        return false;
+	} 
     	System.out.println("No puedes crear un usuario sin cerrar antes la sesion");
     	return false;
     }
@@ -124,8 +130,12 @@ public class Controlador {
     }
     
     public boolean Logout() {
-    	System.out.println("Sesion de '" + sesion.getNick() + "' cerrada satisfactoriamente.");
-    	sesion = null;
+        if(this.getUsuarioConectado()!=null){
+            System.out.println("Sesion de '" + sesion.getNick() + "' cerrada satisfactoriamente.");
+            sesion = null;
+            return false;
+        }
+        System.out.println("No puedes cerrar una sesión sin haberte logeado antes.");
     	return false;
     }
     

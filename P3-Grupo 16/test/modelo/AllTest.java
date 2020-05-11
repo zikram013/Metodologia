@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package modelo;
+import controlador.ControladorTest;
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
 import org.junit.runners.Suite.SuiteClasses;
@@ -24,7 +25,8 @@ import org.junit.runners.Suite.SuiteClasses;
                EntradaTest.class,
                ComentarioTest.class,
                UsuarioTest.class,
-               SubForoTest.class})
+               SubForoTest.class,
+               ControladorTest.class})
 public class AllTest {
     
 }
