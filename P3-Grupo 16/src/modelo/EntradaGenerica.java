@@ -55,6 +55,8 @@ public class EntradaGenerica{
 		}
 		else if(this.verificada && votos.get(usuario.getNick())!=puntuacion && votos.get(usuario.getNick())!=0) {
 			this.puntuacion = puntuacion;
+                        this.votos.remove(usuario.getNick());
+                        this.votos.put(usuario.getNick(), puntuacion);
 			return true;
 		}
 		return false;

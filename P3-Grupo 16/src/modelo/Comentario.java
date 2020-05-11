@@ -48,6 +48,8 @@ public class Comentario {
 		}
 		else if(this.getVotos().get(usuario.getNick())!=puntuacion && this.getVotos().get(usuario.getNick())!=0) {
 			this.puntuacion = puntuacion;
+                        this.votos.remove(usuario.getNick());
+                        this.votos.put(usuario.getNick(), puntuacion);
 			return true;
 		}
 		return false;
