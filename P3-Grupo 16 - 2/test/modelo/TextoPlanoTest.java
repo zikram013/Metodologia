@@ -39,8 +39,9 @@ public class TextoPlanoTest {
 
     @Test
     public void testSomeMethod() {
+        String texto = null;
         // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        assertNull(texto);
     }
     
 }

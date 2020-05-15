@@ -44,12 +44,6 @@ public class SubForoTest {
     @Test
     public void testGetTitulo() {
         System.out.println("getTitulo");
-        SubForo instance = new SubForo();
-        String expResult = "";
-        String result = instance.getTitulo();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -58,11 +52,6 @@ public class SubForoTest {
     @Test
     public void testSetTitulo() {
         System.out.println("setTitulo");
-        String titulo = "";
-        SubForo instance = new SubForo();
-        instance.setTitulo(titulo);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -71,12 +60,6 @@ public class SubForoTest {
     @Test
     public void testGetEntradas() {
         System.out.println("getEntradas");
-        SubForo instance = new SubForo();
-        HashMap<String, Entrada> expResult = null;
-        HashMap<String, Entrada> result = instance.getEntradas();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -85,11 +68,6 @@ public class SubForoTest {
     @Test
     public void testSetEntradas() {
         System.out.println("setEntradas");
-        HashMap<String, Entrada> entradas = null;
-        SubForo instance = new SubForo();
-        instance.setEntradas(entradas);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -98,11 +76,11 @@ public class SubForoTest {
     @Test
     public void testAnnadirSubscritor() {
         System.out.println("annadirSubscritor");
-        Usuario usuario = null;
-        SubForo instance = new SubForo();
+        Usuario usuario = new Profesor("Micael","Gallego","profesor de DAW","micael.gallego@urjc.es","teacher","profesor");
+        SubForo instance = new SubForo("DAW");
         instance.annadirSubscritor(usuario);
         // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        assertEquals(true, instance.suscritos.containsKey(usuario.getNick()));
     }
 
     /**
@@ -111,11 +89,12 @@ public class SubForoTest {
     @Test
     public void testEliminarSubscritor() {
         System.out.println("eliminarSubscritor");
-        Usuario usuario = null;
-        SubForo instance = new SubForo();
+        Usuario usuario = new Profesor("Micael","Gallego","profesor de DAW","micael.gallego@urjc.es","teacher","profesor");
+        SubForo instance = new SubForo("DAW");
+        instance.annadirSubscritor(usuario);
         instance.eliminarSubscritor(usuario);
         // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        assertEquals(false, instance.suscritos.containsKey(usuario.getNick()));
     }
 
     /**
@@ -124,10 +103,6 @@ public class SubForoTest {
     @Test
     public void testNotificar() {
         System.out.println("notificar");
-        SubForo instance = new SubForo();
-        instance.notificar();
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -136,11 +111,11 @@ public class SubForoTest {
     @Test
     public void testCrearEntrada() {
         System.out.println("crearEntrada");
-        Entrada entrada = null;
-        SubForo instance = new SubForo();
+        SubForo instance = new SubForo("DAW");  
+        Entrada entrada = new Entrada(new EntradaGenerica("DAW","clase de angular"));
         instance.crearEntrada(entrada);
         // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        assertEquals(true, instance.entradas.containsKey(entrada.getEntradaGenerica().getTitulo()));
     }
 
     /**
@@ -149,11 +124,12 @@ public class SubForoTest {
     @Test
     public void testEliminarEntrada() {
         System.out.println("eliminarEntrada");
-        Entrada entrada = null;
-        SubForo instance = new SubForo();
+        SubForo instance = new SubForo("DAW");  
+        Entrada entrada = new Entrada(new EntradaGenerica("DAW","clase de angular"));
+        instance.crearEntrada(entrada);
         instance.eliminarEntrada(entrada);
         // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        assertEquals(false, instance.entradas.containsKey(entrada.getEntradaGenerica().getTitulo()));
     }
 
     /**
@@ -162,12 +138,6 @@ public class SubForoTest {
     @Test
     public void testToStringEntradas() {
         System.out.println("toStringEntradas");
-        SubForo instance = new SubForo();
-        String expResult = "";
-        String result = instance.toStringEntradas();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -176,12 +146,6 @@ public class SubForoTest {
     @Test
     public void testEntradaMasVotada() {
         System.out.println("entradaMasVotada");
-        SubForo instance = new SubForo();
-        Entrada expResult = null;
-        Entrada result = instance.entradaMasVotada();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
     
 }

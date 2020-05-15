@@ -5,6 +5,7 @@
  */
 package modelo;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import org.junit.After;
@@ -50,7 +51,6 @@ public class EntradaGenericaTest {
         int result = instance.getPuntuacion();
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -59,14 +59,13 @@ public class EntradaGenericaTest {
     @Test
     public void testVotar() {
         System.out.println("votar");
-        int puntuacion = 0;
-        Usuario usuario = null;
+        int puntuacion = 3;
+        Usuario usuario = new Estudiante("David","Amor","alumno","david.amor@alumnos.urjc.es","user","estudiante");
         EntradaGenerica instance = new EntradaGenerica();
-        boolean expResult = false;
-        boolean result = instance.votar(puntuacion, usuario);
-        assertEquals(expResult, result);
+        instance.verificar(true);
+        instance.votar(puntuacion, usuario);
+        assertEquals(puntuacion, instance.getPuntuacion());
         // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -75,12 +74,6 @@ public class EntradaGenericaTest {
     @Test
     public void testGetTitulo() {
         System.out.println("getTitulo");
-        EntradaGenerica instance = new EntradaGenerica();
-        String expResult = "";
-        String result = instance.getTitulo();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -93,7 +86,6 @@ public class EntradaGenericaTest {
         EntradaGenerica instance = new EntradaGenerica();
         instance.setTitulo(titulo);
         // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -107,7 +99,6 @@ public class EntradaGenericaTest {
         String result = instance.getTexto();
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -120,7 +111,6 @@ public class EntradaGenericaTest {
         EntradaGenerica instance = new EntradaGenerica();
         instance.setTexto(texto);
         // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -134,7 +124,6 @@ public class EntradaGenericaTest {
         boolean result = instance.isVerificada();
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -147,7 +136,6 @@ public class EntradaGenericaTest {
         EntradaGenerica instance = new EntradaGenerica();
         instance.verificar(verificada);
         // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -156,13 +144,12 @@ public class EntradaGenericaTest {
     @Test
     public void testComentar() {
         System.out.println("comentar");
-        String comentario = "";
+        String comentario = "Hola";
         EntradaGenerica instance = new EntradaGenerica();
         boolean expResult = false;
         boolean result = instance.comentar(comentario);
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -171,12 +158,6 @@ public class EntradaGenericaTest {
     @Test
     public void testGetComentarios() {
         System.out.println("getComentarios");
-        EntradaGenerica instance = new EntradaGenerica();
-        List<Comentario> expResult = null;
-        List<Comentario> result = instance.getComentarios();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -185,11 +166,11 @@ public class EntradaGenericaTest {
     @Test
     public void testSetComentarios() {
         System.out.println("setComentarios");
-        List<Comentario> comentarios = null;
+        List<Comentario> comentarios = new ArrayList<>();
         EntradaGenerica instance = new EntradaGenerica();
         instance.setComentarios(comentarios);
         // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        assertEquals(comentarios, instance.getComentarios());
     }
 
     /**
@@ -199,11 +180,10 @@ public class EntradaGenericaTest {
     public void testGetVotantes() {
         System.out.println("getVotantes");
         EntradaGenerica instance = new EntradaGenerica();
-        HashMap<String, Usuario> expResult = null;
+        HashMap<String, Usuario> expResult = new HashMap<>();
         HashMap<String, Usuario> result = instance.getVotantes();
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -212,11 +192,11 @@ public class EntradaGenericaTest {
     @Test
     public void testSetVotantes() {
         System.out.println("setVotantes");
-        HashMap<String, Usuario> votantes = null;
+        HashMap<String, Usuario> votantes = new HashMap<>();
         EntradaGenerica instance = new EntradaGenerica();
         instance.setVotantes(votantes);
         // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        assertEquals(votantes, instance.getVotantes());
     }
 
     /**
@@ -230,7 +210,6 @@ public class EntradaGenericaTest {
         String result = instance.toStringComentarios();
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
     
 }

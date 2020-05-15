@@ -42,13 +42,12 @@ public class EjercicioTest {
      */
     @Test
     public void testGetSolucion() {
-        System.out.println("getSolucion");
-        Ejercicio instance = new Ejercicio();
-        String expResult = "";
+        System.out.println("getSolucion");        
+        String expResult = "La respuesta es la b";
+        Ejercicio instance = new Ejercicio(expResult);
         String result = instance.getSolucion();
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -57,11 +56,11 @@ public class EjercicioTest {
     @Test
     public void testSetSolucion() {
         System.out.println("setSolucion");
-        String solucion = "";
+        String solucion = "La respuesta es b";
         Ejercicio instance = new Ejercicio();
         instance.setSolucion(solucion);
         // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        assertEquals(solucion,instance.getSolucion());
     }
     
 }

@@ -43,12 +43,10 @@ public class PenalizacionTest {
     @Test
     public void testEstaActiva() {
         System.out.println("estaActiva");
-        Penalizacion instance = null;
-        boolean expResult = false;
-        boolean result = instance.estaActiva();
-        assertEquals(expResult, result);
+        int dias = 6;
+        Penalizacion instance = new Penalizacion(dias);
         // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        assertEquals(true, instance.isActiva());
     }
 
     /**
@@ -57,11 +55,11 @@ public class PenalizacionTest {
     @Test
     public void testAvanzarDias() {
         System.out.println("avanzarDias");
-        int dias = 0;
-        Penalizacion instance = null;
-        instance.avanzarDias(dias);
+        int dias = 6;
+        Penalizacion instance = new Penalizacion(dias);
+        instance.avanzarDias(4);
         // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        assertEquals(dias-4, instance.getDiasPenalizacion());
     }
 
     /**
@@ -70,10 +68,11 @@ public class PenalizacionTest {
     @Test
     public void testExtenderPenalizacion() {
         System.out.println("extenderPenalizacion");
-        Penalizacion instance = null;
+        int dias = 6;
+        Penalizacion instance = new Penalizacion(dias);
         instance.extenderPenalizacion();
         // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        assertEquals(8, instance.getDiasPenalizacion());
     }
 
     /**
@@ -82,12 +81,10 @@ public class PenalizacionTest {
     @Test
     public void testIsActiva() {
         System.out.println("isActiva");
-        Penalizacion instance = null;
-        boolean expResult = false;
-        boolean result = instance.isActiva();
-        assertEquals(expResult, result);
+        int dias = 6;
+        Penalizacion instance = new Penalizacion(dias);
         // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        assertEquals(true, instance.isActiva());
     }
 
     /**
@@ -96,11 +93,7 @@ public class PenalizacionTest {
     @Test
     public void testSetActiva() {
         System.out.println("setActiva");
-        boolean activa = false;
-        Penalizacion instance = null;
-        instance.setActiva(activa);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+
     }
 
     /**
@@ -109,12 +102,11 @@ public class PenalizacionTest {
     @Test
     public void testGetDiasPenalizacion() {
         System.out.println("getDiasPenalizacion");
-        Penalizacion instance = null;
-        int expResult = 0;
-        int result = instance.getDiasPenalizacion();
-        assertEquals(expResult, result);
+        int dias = 6;
+        Penalizacion instance = new Penalizacion(dias);
+
         // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        assertEquals(dias, instance.getDiasPenalizacion());
     }
 
     /**
@@ -123,11 +115,11 @@ public class PenalizacionTest {
     @Test
     public void testSetDiasPenalizacion() {
         System.out.println("setDiasPenalizacion");
-        int diasPenalizacion = 0;
-        Penalizacion instance = null;
+        int diasPenalizacion = 7;
+        Penalizacion instance = new Penalizacion(diasPenalizacion);
         instance.setDiasPenalizacion(diasPenalizacion);
         // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        assertEquals(7, instance.getDiasPenalizacion());
     }
     
 }

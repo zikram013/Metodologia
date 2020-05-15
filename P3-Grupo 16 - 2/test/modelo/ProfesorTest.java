@@ -43,12 +43,16 @@ public class ProfesorTest {
     @Test
     public void testToString() {
         System.out.println("toString");
-        Profesor instance = new Profesor();
-        String expResult = "";
-        String result = instance.toString();
-        assertEquals(expResult, result);
+        Profesor instance = new Profesor("Micael", "Gallego", "profesor de DAW", "micael.gallego@urjc.es", "teacher","profesor");
+        String cadena = "Profesor{rol='profesor'\n"
+                + ", nombre='Micael'\n"
+                + ", apellidos='Gallego'\n"
+                + ", nick='profesor de DAW'\n"
+                + ", email='micael.gallego@urjc.es'\n"
+                + ", contrasenna='teacher'\n"
+                + "}";
         // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        assertEquals(cadena, instance.toString());
     }
     
 }

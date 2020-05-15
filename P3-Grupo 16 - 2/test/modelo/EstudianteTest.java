@@ -43,12 +43,16 @@ public class EstudianteTest {
     @Test
     public void testToString() {
         System.out.println("toString");
-        Estudiante instance = new Estudiante();
-        String expResult = "";
-        String result = instance.toString();
-        assertEquals(expResult, result);
+        Estudiante instance = new Estudiante("David","Amor","alumno","david.amor@alumnos.urjc.es","user","estudiante");
+        String cadena = "Estudiante{rol='estudiante'\n"
+                + ", nombre='David'\n"
+                + ", apellidos='Amor'\n"
+                + ", nick='alumno'\n"
+                + ", email='david.amor@alumnos.urjc.es'\n"
+                + ", contrasenna='user'\n"
+                + "}";
         // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        assertEquals(cadena, instance.toString());
     }
 
     /**
@@ -57,10 +61,10 @@ public class EstudianteTest {
     @Test
     public void testPenalizar() {
         System.out.println("penalizar");
-        Estudiante instance = new Estudiante();
+        Estudiante instance = new Estudiante("David","Amor","alumno","david.amor@alumnos.urjc.es","user","estudiante");
         instance.penalizar();
         // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        assertEquals(true, instance.estaPenalizado());
     }
 
     /**
@@ -69,12 +73,11 @@ public class EstudianteTest {
     @Test
     public void testEstaPenalizado() {
         System.out.println("estaPenalizado");
-        Estudiante instance = new Estudiante();
-        boolean expResult = false;
-        boolean result = instance.estaPenalizado();
-        assertEquals(expResult, result);
+        Estudiante instance = new Estudiante("David","Amor","alumno","david.amor@alumnos.urjc.es","user","estudiante");
+        instance.penalizar();
+        instance.getPenalizacion().avanzarDias(2);
         // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        assertEquals(false, instance.estaPenalizado());
     }
 
     /**
@@ -83,12 +86,10 @@ public class EstudianteTest {
     @Test
     public void testGetPenalizacion() {
         System.out.println("getPenalizacion");
-        Estudiante instance = new Estudiante();
-        Penalizacion expResult = null;
-        Penalizacion result = instance.getPenalizacion();
-        assertEquals(expResult, result);
+        Estudiante instance = new Estudiante("David","Amor","alumno","david.amor@alumnos.urjc.es","user","estudiante");
+        instance.penalizar();
         // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        assertEquals(2, instance.getPenalizacion().getDiasPenalizacion());
     }
 
     /**
@@ -97,11 +98,6 @@ public class EstudianteTest {
     @Test
     public void testSetPenalizacion() {
         System.out.println("setPenalizacion");
-        Penalizacion penalizacion = null;
-        Estudiante instance = new Estudiante();
-        instance.setPenalizacion(penalizacion);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
     
 }

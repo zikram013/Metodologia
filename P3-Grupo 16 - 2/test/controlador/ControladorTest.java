@@ -5,6 +5,7 @@
  */
 package controlador;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import modelo.Admin;
@@ -53,11 +54,11 @@ public class ControladorTest {
     public void testGetSubforos() {
         System.out.println("getSubforos");
         Controlador instance = new Controlador();
-        HashMap<String, SubForo> expResult = null;
-        HashMap<String, SubForo> result = instance.getSubforos();
-        assertEquals(expResult, result);
+        SubForo subforo = new SubForo("DAW");
+        HashMap<String, SubForo> expResult = new HashMap<>();
+        instance.CrearSubforo(subforo);
+        assertEquals(expResult, instance.getSubforos());
         // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -67,11 +68,10 @@ public class ControladorTest {
     public void testGetUsuarios() {
         System.out.println("getUsuarios");
         Controlador instance = new Controlador();
-        HashMap<String, Usuario> expResult = null;
+        HashMap<String, Usuario> expResult = new HashMap<>();
         HashMap<String, Usuario> result = instance.getUsuarios();
-        assertEquals(expResult, result);
+        assertEquals(expResult.isEmpty(), result.isEmpty());
         // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -93,7 +93,7 @@ public class ControladorTest {
     @Test
     public void testGuardarUsuarioInc() {
         System.out.println("guardarUsuarioIncorrecto");
-        Usuario u = new Estudiante("David","Amor","alumno","david.amor@gmail.com","user","alumno");
+        Usuario u = new Estudiante("David","Amor","alumno","david.amor@gmail.com","user","estudiante");
         Controlador instance = new Controlador();
         instance.guardarUsuario(u);
         // TODO review the generated test code and remove the default call to fail.
@@ -109,14 +109,13 @@ public class ControladorTest {
         Controlador instance = new Controlador();
         instance.listaUsuarios();
         // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
-    /**
-     * Test of borrarUsario method, of class Controlador.
+        /**
+     * Test of borrarUsarioNull method, of class Controlador.
      */
     @Test
-    public void testBorrarUsario() {
+    public void testBorrarUsarioNull() {
         System.out.println("borrarUsario");
         Usuario u = null;
         Controlador instance = new Controlador();
@@ -125,6 +124,34 @@ public class ControladorTest {
         assertNull(u);
     }
 
+    
+    /**
+     * Test of borrarUsario method, of class Controlador.
+     */
+    @Test
+    public void testBorrarUsario() {
+        System.out.println("borrarUsario");
+        Usuario u = new Estudiante("David","Amor","alumno","david.amor@alumnos.urjc.es","user","estudiante");
+        Controlador instance = new Controlador();
+        instance.guardarUsuario(u);
+        instance.borrarUsario(u);
+        // TODO review the generated test code and remove the default call to fail.
+        assertFalse(instance.getUsuarios().containsKey(u.getNick()));
+    }
+
+        /**
+     * Test of borrarUsarioNoGuard method, of class Controlador.
+     */
+    @Test
+    public void testBorrarUsarioNoGuard() {
+        System.out.println("borrarUsarioNoGuardado");
+        Usuario u = new Estudiante("David","Amor","alumno","david.amor@alumnos.urjc.es","user","estudiante");
+        Controlador instance = new Controlador();
+        instance.borrarUsario(u);
+        // TODO review the generated test code and remove the default call to fail.
+        assertFalse(instance.getUsuarios().containsKey(u.getNick()));
+    }
+    
     /**
      * Test of iniciarSession method, of class Controlador.
      */
@@ -132,7 +159,7 @@ public class ControladorTest {
     public void testIniciarSession() {
         System.out.println("iniciarSession");
         Controlador instance = new Controlador();
-        Usuario u = new Estudiante("David","Amor","alumno","david.amor@alumnos.urjc.es","user","alumno");
+        Usuario u = new Estudiante("David","Amor","alumno","david.amor@alumnos.urjc.es","user","estudiante");
         instance.registrarUsuario(u);
         instance.iniciarSession(u);
         // TODO review the generated test code and remove the default call to fail.
@@ -140,6 +167,19 @@ public class ControladorTest {
 
     }
 
+        @Test
+    public void testIniciarSessionPenalizado() {
+        System.out.println("iniciarSessionPenalizado");
+        Controlador instance = new Controlador();
+        Usuario u = new Estudiante("David","Amor","alumno","david.amor@alumnos.urjc.es","user","estudiante");
+        instance.registrarUsuario(u);
+        instance.penalizar(u.getNick());
+        instance.iniciarSession(u);
+        // TODO review the generated test code and remove the default call to fail.
+        assertNull(instance.getUsuarioConectado());
+
+    }
+    
     /**
      * Test of registrarUsuario method, of class Controlador.
      */
@@ -293,11 +333,10 @@ public class ControladorTest {
     public void testEntradasMasVotadas() {
         System.out.println("entradasMasVotadas");
         Controlador instance = new Controlador();
-        List<Entrada> expResult = null;
+        List<Entrada> expResult = new ArrayList<>();
         List<Entrada> result = instance.entradasMasVotadas();
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -307,10 +346,9 @@ public class ControladorTest {
     public void testPenalizar() {
         System.out.println("penalizar");
         Controlador instance = new Controlador();
-        SubForo subforo = new SubForo("DAW");
         Usuario u = new Estudiante("David","Amor","chico problematico","david.amor@alumnos.urjc.es","user","alumno");
         instance.registrarUsuario(u);
-        Usuario ad = new Admin("Micael","Gallego","profesor de DAW","micael.gallego@urjc.es","teacher","admin");
+        Usuario ad = new Profesor("Micael","Gallego","profesor de DAW","micael.gallego@urjc.es","teacher","profesor");
         instance.registrarUsuario(ad);
         instance.iniciarSession(ad);
         instance.penalizar("chico problematico");
@@ -328,7 +366,7 @@ public class ControladorTest {
         Controlador instance = new Controlador();
         Usuario u = new Estudiante("David","Amor","chico problematico","david.amor@alumnos.urjc.es","user","estudiante");
         instance.registrarUsuario(u);
-        Usuario ad = new Admin("Micael","Gallego","profesor de DAW","micael.gallego@urjc.es","teacher","admin");
+        Usuario ad = new Profesor("Micael","Gallego","profesor de DAW","micael.gallego@urjc.es","teacher","profesor");
         instance.registrarUsuario(ad);
         instance.iniciarSession(ad);
         instance.penalizar("chico problematico");

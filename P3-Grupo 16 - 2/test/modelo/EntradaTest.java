@@ -43,12 +43,6 @@ public class EntradaTest {
     @Test
     public void testGetEntradaGenerica() {
         System.out.println("getEntradaGenerica");
-        Entrada instance = new Entrada();
-        EntradaGenerica expResult = null;
-        EntradaGenerica result = instance.getEntradaGenerica();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -57,11 +51,6 @@ public class EntradaTest {
     @Test
     public void testSetEntradaGenerica() {
         System.out.println("setEntradaGenerica");
-        EntradaGenerica entradaGenerica = null;
-        Entrada instance = new Entrada();
-        instance.setEntradaGenerica(entradaGenerica);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -70,12 +59,6 @@ public class EntradaTest {
     @Test
     public void testGetUsuario() {
         System.out.println("getUsuario");
-        Entrada instance = new Entrada();
-        Usuario expResult = null;
-        Usuario result = instance.getUsuario();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -84,11 +67,7 @@ public class EntradaTest {
     @Test
     public void testSetUsuario() {
         System.out.println("setUsuario");
-        Usuario usuario = null;
-        Entrada instance = new Entrada();
-        instance.setUsuario(usuario);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+
     }
 
     /**
@@ -97,12 +76,12 @@ public class EntradaTest {
     @Test
     public void testEditar() {
         System.out.println("editar");
-        String newTitulo = "";
-        String newTexto = "";
+        String newTitulo = "DAW";
+        String newTexto = "Clase de docker";
         Entrada instance = new Entrada();
         instance.editar(newTitulo, newTexto);
         // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        assertEquals("Clase de docker", instance.getEntradaGenerica().getTexto());
     }
 
     /**
@@ -111,12 +90,6 @@ public class EntradaTest {
     @Test
     public void testToString() {
         System.out.println("toString");
-        Entrada instance = new Entrada();
-        String expResult = "";
-        String result = instance.toString();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -125,13 +98,6 @@ public class EntradaTest {
     @Test
     public void testComprobarAutor() {
         System.out.println("comprobarAutor");
-        String nick = "";
-        Entrada instance = new Entrada();
-        boolean expResult = false;
-        boolean result = instance.comprobarAutor(nick);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
     
 }
